@@ -3200,7 +3200,9 @@
         urlEncodedDataPairs.push("access_type=" + DoURLEncode("offline"));
         urlEncodedDataPairs.push("code=" + DoURLEncode("<%=gsBearerCode%>"));
         urlEncodedDataPairs.push("client_id=" + DoURLEncode(gsTDAPIKey));
-        urlEncodedDataPairs.push("redirect_uri=" + DoURLEncode("https://localhost:8080"));
+        urlEncodedDataPairs.push("redirect_uri=" + DoURLEncode("https://bhalp.github.io/mySite/default.htm"));
+        //urlEncodedDataPairs.push("redirect_uri=" + DoURLEncode("https://localhost:8080"));
+        
 
 
         // Combine the pairs into a single string and replace all %-encoded spaces to 
@@ -8602,6 +8604,7 @@
 
     function PageLoad() {
         debugger
+        gsBearerCode = location.search.split('=')[1];
         document.getElementById("TheBody").style.backgroundColor = gsBodyBackgroundColor;
         if (gbUsingCell) {
             let sTmp = ""
