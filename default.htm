@@ -8002,6 +8002,10 @@
         }
     }
 
+    function onClickInfo(ev) {
+        showTDAPIError("Current version is " + gsCurrentVersion);
+    }
+
     function onKeyDown(ev) {
         let charCode = ev.keyCode;
         // get key
@@ -8613,6 +8617,7 @@
 //        gsBearerCode = location.search.split('=')[1];
         document.getElementById("TheBody").style.backgroundColor = gsBodyBackgroundColor;
         if (gbUsingCell) {
+            document.getElementById("spanInfo").display = "inline";
             let sTmp = ""
             sTmp = "<input type=\"checkbox\" id=\"chkIndexDJI\" name=\"chkIndexDJI\" value=\"\" checked onclick=\"chkIndexChanged(event)\">" +
                 "<label for=\"chkIndexDJI\"> Dow</label>" +
@@ -10814,14 +10819,15 @@
 <div id="divTDAPIError" style="display:none;color:darkred; font-family:Arial, Helvetica, sans-serif; font-size:12pt;"></div>
 <table style="font-family:Arial, Helvetica, sans-serif; font-size:12pt;width:800px">
     <tr>
-	    <td id=tdLoggedOnAs  >
+        <td id=tdLoggedOnAs>
             <span id="spanLoggedOnAs" style="color:black;font-family:Arial, Helvetica, sans-serif; font-size:14pt;vertical-align:top; text-align:left">Not logged on.</span>
-            <span style="width:50px;font-family:Arial, Helvetica, sans-serif; font-size:10pt;vertical-align:middle; text-align:left" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> 
-            <span id="spanPreMarket" style="display:none;width:50px;color:white;background-color:darkred;font-family:Arial, Helvetica, sans-serif; font-size:10pt;vertical-align:middle; text-align:left" >&nbsp;Pre&nbsp;</span> 
-            <span id="spanRegularMarket" style="display:none;width:50px;color:white;background-color:darkred;font-family:Arial, Helvetica, sans-serif; font-size:10pt;vertical-align:middle; text-align:left" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> 
-            <span id="spanPostMarket" style="display:none;width:50px;color:white;background-color:darkred;font-family:Arial, Helvetica, sans-serif; font-size:10pt;vertical-align:middle; text-align:left" >&nbsp;Post&nbsp;</span> 
+            <span style="width:50px;font-family:Arial, Helvetica, sans-serif; font-size:10pt;vertical-align:middle; text-align:left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+            <span id="spanPreMarket" style="display:none;width:50px;color:white;background-color:darkred;font-family:Arial, Helvetica, sans-serif; font-size:10pt;vertical-align:middle; text-align:left">&nbsp;Pre&nbsp;</span>
+            <span id="spanRegularMarket" style="display:none;width:50px;color:white;background-color:darkred;font-family:Arial, Helvetica, sans-serif; font-size:10pt;vertical-align:middle; text-align:left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+            <span id="spanPostMarket" style="display:none;width:50px;color:white;background-color:darkred;font-family:Arial, Helvetica, sans-serif; font-size:10pt;vertical-align:middle; text-align:left">&nbsp;Post&nbsp;</span>
             <span id="spanSpecialImage" style="display:none;"><img src="2019-rose-i-love-you-animation.gif" width="200" height="200"><img src="valentine_10_W.gif" width="200" height="200"></span>
-            <span id="spanDebug" style="font-family:Arial, Helvetica, sans-serif; font-size:10pt;vertical-align:middle; text-align:left" ></span>
+            <span id="spanInfo" style="display:none; font-family:Arial, Helvetica, sans-serif; font-size:10pt;vertical-align:middle; text-align:left"><img src="Button-Info-icon40px.png" onclick="onClickInfo(event)" /></span>
+            <span id="spanDebug" style="font-family:Arial, Helvetica, sans-serif; font-size:10pt;vertical-align:middle; text-align:left"></span>
         </td>
     </tr>
     <tr>

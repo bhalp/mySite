@@ -8007,6 +8007,10 @@
         }
     }
 
+    function onClickInfo(ev) {
+        showTDAPIError("Current version is " + gsCurrentVersion);
+    }
+
     function onKeyDown(ev) {
         let charCode = ev.keyCode;
         // get key
@@ -8618,6 +8622,7 @@
 //        gsBearerCode = location.search.split('=')[1];
         document.getElementById("TheBody").style.backgroundColor = gsBodyBackgroundColor;
         if (gbUsingCell) {
+            document.getElementById("spanInfo").display = "inline";
             let sTmp = ""
             sTmp = "<input type=\"checkbox\" id=\"chkIndexDJI\" name=\"chkIndexDJI\" value=\"\" checked onclick=\"chkIndexChanged(event)\">" +
                 "<label for=\"chkIndexDJI\"> Dow</label>" +
@@ -10826,6 +10831,7 @@
                     <span id="spanRegularMarket" style="display:none;width:50px;color:white;background-color:darkred;font-family:Arial, Helvetica, sans-serif; font-size:10pt;vertical-align:middle; text-align:left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
                     <span id="spanPostMarket" style="display:none;width:50px;color:white;background-color:darkred;font-family:Arial, Helvetica, sans-serif; font-size:10pt;vertical-align:middle; text-align:left">&nbsp;Post&nbsp;</span>
                     <span id="spanSpecialImage" style="display:none;"><img src="2019-rose-i-love-you-animation.gif" width="200" height="200"><img src="valentine_10_W.gif" width="200" height="200"></span>
+                    <span id="spanInfo" style="display:none; font-family:Arial, Helvetica, sans-serif; font-size:10pt;vertical-align:middle; text-align:left"><img src="Button-Info-icon40px.png" onclick="onClickInfo(event)" /></span>
                     <span id="spanDebug" style="font-family:Arial, Helvetica, sans-serif; font-size:10pt;vertical-align:middle; text-align:left"></span>
                 </td>
             </tr>
