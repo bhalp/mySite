@@ -3198,7 +3198,8 @@
 
         urlEncodedDataPairs.push("grant_type=" + DoURLEncode("authorization_code"));
         urlEncodedDataPairs.push("access_type=" + DoURLEncode("offline"));
-        urlEncodedDataPairs.push("code=" + gsBearerCode);
+        urlEncodedDataPairs.push(gsBearerCode);
+        //urlEncodedDataPairs.push("code=" + gsBearerCode);
         urlEncodedDataPairs.push("client_id=" + DoURLEncode(gsTDAPIKey));
         urlEncodedDataPairs.push("redirect_uri=" + DoURLEncode("https://bhalp.github.io/mySite/default.htm"));
         //urlEncodedDataPairs.push("redirect_uri=" + DoURLEncode("https://localhost:8080"));
@@ -8604,7 +8605,9 @@
 
     function PageLoad() {
         debugger
-        gsBearerCode = location.search.split('=')[1];
+        let sBearerCode = location.search;
+        gsBearerCode = sBearerCode.substr(1, sBearerCode.length - 1);
+//        gsBearerCode = location.search.split('=')[1];
         document.getElementById("TheBody").style.backgroundColor = gsBodyBackgroundColor;
         if (gbUsingCell) {
             let sTmp = ""
