@@ -106,6 +106,7 @@
     var gsLogonUser = ""; //the user id used to log into TD Ameritrade
     var gsStartTradeHistoryDate = "2020-04-01"
     var gsTDAPIKey = "5V5GTTHEURLAUGI2JAFC06QKAIVPAVYF";
+    var gsRedirectURL = "";
 
     function Position() {
         this.averagePrice = 0.0; //cost/share
@@ -3201,7 +3202,7 @@
         urlEncodedDataPairs.push(gsBearerCode);
         //urlEncodedDataPairs.push("code=" + gsBearerCode);
         urlEncodedDataPairs.push("client_id=" + DoURLEncode(gsTDAPIKey));
-        urlEncodedDataPairs.push("redirect_uri=" + DoURLEncode("https://bhalp.github.io/mySite/default.htm"));
+        urlEncodedDataPairs.push("redirect_uri=" + DoURLEncode(gsRedirectURL));
         //urlEncodedDataPairs.push("redirect_uri=" + DoURLEncode("https://localhost:8080"));
         
 
@@ -8606,6 +8607,7 @@
     function PageLoad() {
         //debugger
         gbUsingCell = false;
+        gsRedirectURL = "https://bhalp.github.io/mySite/default.htm";
         let sBearerCode = location.search;
         gsBearerCode = sBearerCode.substr(1, sBearerCode.length - 1);
 //        gsBearerCode = location.search.split('=')[1];

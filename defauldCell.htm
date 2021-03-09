@@ -3207,7 +3207,7 @@
         urlEncodedDataPairs.push(gsBearerCode);
         //urlEncodedDataPairs.push("code=" + gsBearerCode);
         urlEncodedDataPairs.push("client_id=" + DoURLEncode(gsTDAPIKey));
-        urlEncodedDataPairs.push("redirect_uri=" + DoURLEncode("https://bhalp.github.io/mySite/default.htm"));
+        urlEncodedDataPairs.push("redirect_uri=" + DoURLEncode(gsRedirectURL));
         //urlEncodedDataPairs.push("redirect_uri=" + DoURLEncode("https://localhost:8080"));
 
 
@@ -8612,6 +8612,7 @@
     function PageLoad() {
         //debugger
         gbUsingCell = true;
+        gsRedirectURL = "https://bhalp.github.io/mySite/defaultCell.htm";
         let sBearerCode = location.search;
         gsBearerCode = sBearerCode.substr(1, sBearerCode.length - 1);
 //        gsBearerCode = location.search.split('=')[1];
