@@ -1,35 +1,41 @@
-<HTML>
+﻿<HTML>
 <HEAD>
-<title></title>
-<meta name="HandheldFriendly" content="true" />
-<meta name="viewport" content="width=device-width, height=device-height, user-scalable=yes, initial-scale=1.0" />
-<meta http-equiv='X-UA-Compatible' content="IE=edge" />
+    <title></title>
+    <meta name="HandheldFriendly" content="true" />
+    <meta name="viewport" content="width=device-width, height=device-height, user-scalable=yes, initial-scale=1.0" />
+    <meta http-equiv='X-UA-Compatible' content="IE=edge" />
 
-<style type="text/css">
-	A:link   { color: blue; cursor: inherit } 
-	A:active { color: red; cursor: inherit }
+    <style type="text/css">
+        A:link {
+            color: blue;
+            cursor: inherit
+        }
 
-    #myProgress {
-      width: 300px;
-      background-color: lightgrey;
-    }
+        A:active {
+            color: red;
+            cursor: inherit
+        }
 
-    #myBar {
-      width: 1%;
-      height: 15px;
-      background-color: green;
-    }
+        #myProgress {
+            width: 300px;
+            background-color: lightgrey;
+        }
 
-</style>
-<script type="text/javascript">
+        #myBar {
+            width: 1%;
+            height: 15px;
+            background-color: green;
+        }
+    </style>
+    <script type="text/javascript">
 <!--
 //-->
-</script>
-<script type="text/javascript" src="SiteSpecific010321b.js"></script>
-<script type="text/javascript" src="HIUtilities022121a.js"></script>
-<script type="text/javascript" src="JSON.js"></script>
+    </script>
+    <script type="text/javascript" src="SiteSpecific010321b.js"></script>
+    <script type="text/javascript" src="HIUtilities022121a.js"></script>
+    <script type="text/javascript" src="JSON.js"></script>
 
-<script type="text/javascript" >
+    <script type="text/javascript">
 <!--
     function FixedPrice() {
         this.symbol = "";
@@ -144,8 +150,8 @@
     function PriceInfo() {
         this.idx = 0;
         this.symbol = "";
-        this.shortPIP = new PriceInfoPeriod(); 
-        this.longPIP = new PriceInfoPeriod(); 
+        this.shortPIP = new PriceInfoPeriod();
+        this.longPIP = new PriceInfoPeriod();
         this.totalVolume = 0;
     }
     var gPriceInfo = new Array(); //collection of PriceInfo objects
@@ -256,8 +262,8 @@
         this.bSelectedTemp = false;
         this.bSelectedTempSymbols = false;
         this.bShowAllAccountsForEachSymbol = false;
-        this.iSortOrderFields = 0; //0 - symbol, 1 - qty, 2 - last, 3 - net chng, 
-                                   //4 - net chng %, 5 - bid, 6 - ask, 7 - high, 
+        this.iSortOrderFields = 0; //0 - symbol, 1 - qty, 2 - last, 3 - net chng,
+                                   //4 - net chng %, 5 - bid, 6 - ask, 7 - high,
                                    //8 - low, 9 - day gain, 10 - gain, 11 - gain %, 12 - cost/share
         this.iSortOrderAscDesc = 0; //0 - ascending, 1 - descending
         this.spanName = "";
@@ -360,7 +366,7 @@
         this.a10symbol = "\"symbol\": "; //like "XYZ" followed by a comma
         this.a11assetType = "\"assetType\": \"EQUITY\"";
         this.a12instrumentEnd = " }";
-        this.a13instructionEnd = " }"; 
+        this.a13instructionEnd = " }";
         this.a14orderLegCollectionEnd = " ]";
         this.a15complexOrderStrategyTypeEnd = " }";
     }
@@ -389,7 +395,7 @@
         this.aWL13end = " }";
     }
     var gTDWLOrders = new Array();
-    
+
     function TDOrderSummary() {
         this.symbol = "";
         this.shares = 0;
@@ -423,13 +429,13 @@
       "securitiesAccount": "The type <securitiesAccount> has the following subclasses [MarginAccount, CashAccount] descriptions are listed below"
     }
     ]
-    
+
     //The class <securitiesAccount> has the
     //following subclasses:
     //-MarginAccount
     //-CashAccount
     //JSON for each are listed below:
-    
+
     //MarginAccount:
     {
       "type": "'CASH' or 'MARGIN'",
@@ -614,9 +620,9 @@
         "optionBuyingPower": 0
       }
     }
-    
+
     //OR
-    
+
     //CashAccount:
     {
       "type": "'CASH' or 'MARGIN'",
@@ -762,7 +768,7 @@
         "unsettledCash": 0
       }
     }
-    
+
     //The class <Instrument> has the
     //following subclasses:
     //-Equity
@@ -771,7 +777,7 @@
     //-CashEquivalent
     //-Option
     //JSON for each are listed below:
-    
+
     //Equity:
     {
       "assetType": "'EQUITY' or 'OPTION' or 'INDEX' or 'MUTUAL_FUND' or 'CASH_EQUIVALENT' or 'FIXED_INCOME' or 'CURRENCY'",
@@ -779,9 +785,9 @@
       "symbol": "string",
       "description": "string"
     }
-    
+
     //OR
-    
+
     //FixedIncome:
     {
       "assetType": "'EQUITY' or 'OPTION' or 'INDEX' or 'MUTUAL_FUND' or 'CASH_EQUIVALENT' or 'FIXED_INCOME' or 'CURRENCY'",
@@ -792,9 +798,9 @@
       "variableRate": 0,
       "factor": 0
     }
-    
+
     //OR
-    
+
     //MutualFund:
     {
       "assetType": "'EQUITY' or 'OPTION' or 'INDEX' or 'MUTUAL_FUND' or 'CASH_EQUIVALENT' or 'FIXED_INCOME' or 'CURRENCY'",
@@ -803,9 +809,9 @@
       "description": "string",
       "type": "'NOT_APPLICABLE' or 'OPEN_END_NON_TAXABLE' or 'OPEN_END_TAXABLE' or 'NO_LOAD_NON_TAXABLE' or 'NO_LOAD_TAXABLE'"
     }
-    
+
     //OR
-    
+
     //CashEquivalent:
     {
       "assetType": "'EQUITY' or 'OPTION' or 'INDEX' or 'MUTUAL_FUND' or 'CASH_EQUIVALENT' or 'FIXED_INCOME' or 'CURRENCY'",
@@ -814,9 +820,9 @@
       "description": "string",
       "type": "'SAVINGS' or 'MONEY_MARKET_FUND'"
     }
-    
+
     //OR
-    
+
     //Option:
     {
       "assetType": "'EQUITY' or 'OPTION' or 'INDEX' or 'MUTUAL_FUND' or 'CASH_EQUIVALENT' or 'FIXED_INCOME' or 'CURRENCY'",
@@ -836,12 +842,12 @@
         }
       ]
     }
-    
+
     //The class <OrderActivity> has the
     //following subclasses:
     //-Execution
     //JSON for each are listed below:
-    
+
     //Execution:
     {
       "activityType": "'EXECUTION' or 'ORDER_ACTION'",
@@ -946,7 +952,7 @@
     var oMDQ;
     /*-------------------------------------------------------------------------------
     [
-    
+
      //Mutual Fund:
     {
       "symbol": "string",
@@ -1281,8 +1287,8 @@
 
                 {
                 "session": "SEAMLESS",  //'NORMAL' or 'AM' or 'PM' or 'SEAMLESS'",
-                "duration": "GOOD_TILL_CANCEL", //'DAY' or 'GOOD_TILL_CANCEL' 
-                "orderType": "LIMIT", //"'MARKET' or 'LIMIT' or 'TRAILING_STOP' 
+                "duration": "GOOD_TILL_CANCEL", //'DAY' or 'GOOD_TILL_CANCEL'
+                "orderType": "LIMIT", //"'MARKET' or 'LIMIT' or 'TRAILING_STOP'
                 "cancelTime": "2021-05-28",
                 "complexOrderStrategyType": "NONE",
                 "price": 45,
@@ -2363,7 +2369,7 @@
         }, true);
 
         div.addEventListener('touchstart', function (e) {
-            if ((!((((div.offsetTop - window.pageYOffset) - e.touches[0].clientY) > 20) || (((div.offsetTop - window.pageYOffset) - e.touches[0].clientY) < -20))) 
+            if ((!((((div.offsetTop - window.pageYOffset) - e.touches[0].clientY) > 20) || (((div.offsetTop - window.pageYOffset) - e.touches[0].clientY) < -20)))
                 ((e.touches[0].clientX > (div.offsetLeft - window.pageXOffset) + giWLDragXoffsetLeft) && (e.touches[0].clientX < (div.offsetLeft - window.pageXOffset) + giWLDragXoffsetRight)) ) {
                 div.isDown = true;
                 gbDoingDrag = true;
@@ -3203,10 +3209,10 @@
         urlEncodedDataPairs.push("client_id=" + DoURLEncode(gsTDAPIKey));
         urlEncodedDataPairs.push("redirect_uri=" + DoURLEncode("https://bhalp.github.io/mySite/default.htm"));
         //urlEncodedDataPairs.push("redirect_uri=" + DoURLEncode("https://localhost:8080"));
-        
 
 
-        // Combine the pairs into a single string and replace all %-encoded spaces to 
+
+        // Combine the pairs into a single string and replace all %-encoded spaces to
         // the '+' character; matches the behaviour of browser form submissions.
         urlEncodedData = urlEncodedDataPairs.join('&').replace(" ", '+');
 
@@ -3297,7 +3303,7 @@
         urlEncodedDataPairs.push("client_id=" + DoURLEncode(gsTDAPIKey));
 
 
-        // Combine the pairs into a single string and replace all %-encoded spaces to 
+        // Combine the pairs into a single string and replace all %-encoded spaces to
         // the '+' character; matches the behaviour of browser form submissions.
         urlEncodedData = urlEncodedDataPairs.join('&').replace(" ", '+');
 
@@ -3447,7 +3453,7 @@
         let oSymbolPrice = new SymbolPrice();
 
         let oCM;
-        
+
         let sServerUrlBase = "https://api.tdameritrade.com/v1/marketdata/" + sSymbol + "/quotes";
         //let sServerUrlBase = "https://api.tdameritrade.com/v1/marketdata/quotes?&symbol=" + DoURLEncode(sSymbol);
 
@@ -7050,7 +7056,7 @@
                     }
 
                 } else {
-                    //no symbols found for the selected watchlists 
+                    //no symbols found for the selected watchlists
                     //                                                    sThisDiv = "";
                     for (let idxWL = 0; idxWL < gWatchlists.length; idxWL++) {
                         if (gWatchlists[idxWL].bSelected) {
@@ -7719,7 +7725,7 @@
             } else {
                 bLocalFirstTime = true;
             }
-        } 
+        }
 
         if ((!bLocalFirstTime) && (gMarketStatus.isInitialized)) {
             if (gMarketStatus.isOpen) {
@@ -8605,7 +8611,7 @@
 
     function PageLoad() {
         //debugger
-        gbUsingCell = false;
+        gbUsingCell = true;
         let sBearerCode = location.search;
         gsBearerCode = sBearerCode.substr(1, sBearerCode.length - 1);
 //        gsBearerCode = location.search.split('=')[1];
@@ -9032,7 +9038,7 @@
         }
         if ((iNumErrors > 0) && (giTDPostOrderRetryCnt < 3)) {
             giTDPostOrderRetryCnt++;
-            giProgress = 0; 
+            giProgress = 0;
             window.setTimeout("PostWLBuyOrders(false, " + iNumSuccess.toString() + ", " + iNumErrors.toString() + ", " + iProgressIncrement.toString() + ", " + (gTDOrders.length - 1).toString() + ", '" + sAccountId + "', 0, " + idxWL.toString() + ")", 4000);
             return;
         } else {
@@ -9498,7 +9504,7 @@
                     oTDOrder.a03AsessionSeamless +
                     oTDOrder.a04duration +
                     oTDOrder.a03FcancelTime +
-                    oTDOrder.a02Aprice + 
+                    oTDOrder.a02Aprice +
                     oTDOrder.a05orderStrategyType +
                     oTDOrder.a06orderLegCollectionStart +
                     oTDOrder.a07instructionStart +
@@ -9591,9 +9597,9 @@
             oTDOrder = gTDOrders[idxOrder];
             if (!oTDOrder.bProcessed) {
                 let sOrder = "";
-                sOrder = oTDOrder.a00complexOrderStrategyTypeStart + oTDOrder.a01complexOrderStrategyType + 
+                sOrder = oTDOrder.a00complexOrderStrategyTypeStart + oTDOrder.a01complexOrderStrategyType +
                     oTDOrder.a02orderType + oTDOrder.a03FcancelTime +
-                    oTDOrder.a03Asession + oTDOrder.a03BstopPriceLinkBasis + oTDOrder.a03CstopPriceLinkType + oTDOrder.a03DstopPriceOffset + oTDOrder.a03EstopType + 
+                    oTDOrder.a03Asession + oTDOrder.a03BstopPriceLinkBasis + oTDOrder.a03CstopPriceLinkType + oTDOrder.a03DstopPriceOffset + oTDOrder.a03EstopType +
                     oTDOrder.a04duration +
                     oTDOrder.a05orderStrategyType +
                     oTDOrder.a06orderLegCollectionStart +
@@ -9736,7 +9742,7 @@
                 }
             }
         }
-        
+
     }
 
     function SelectWatchlistSymbols() {
@@ -10799,163 +10805,163 @@
         gbShowingSelectWatchlists = false;
     }
 //-->
-</script>
+    </script>
 
 </HEAD>
 <!--<BODY id="TheBody" style="background-color:#99CCFF; -webkit-text-size-adjust: none;" onload="window_onLoad()" onKeyUp ="onKeyUp(event)"  onkeydown="onKeyDown(event)">-->
-<BODY id="TheBody" style="background-color:#99CCFF; -webkit-text-size-adjust: 100%;" onload="window_onLoad()" onKeyUp ="onKeyUp(event)"  onkeydown="onKeyDown(event)" >
-<span id="spanWL" style="position:absolute; top:40px; left:800px; font-family:Arial, Helvetica, sans-serif; font-size:10pt;"></span>
-<form id="wlForm" name="wlForm" style="display:none;font-family:Arial, Helvetica, sans-serif; ">
-<div id="divWLSelect" ></div>
-</form>
-<form id="pwdForm" name="pwdForm" style="display:block" onclick="onClick(event)">
-<div id="divTDAPIError" style="display:none;color:darkred; font-family:Arial, Helvetica, sans-serif; font-size:12pt;"></div>
-<table style="font-family:Arial, Helvetica, sans-serif; font-size:12pt;width:800px">
-    <tr>
-	    <td id=tdLoggedOnAs  >
-            <span id="spanLoggedOnAs" style="color:black;font-family:Arial, Helvetica, sans-serif; font-size:14pt;vertical-align:top; text-align:left">Not logged on.</span>
-            <span style="width:50px;font-family:Arial, Helvetica, sans-serif; font-size:10pt;vertical-align:middle; text-align:left" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> 
-            <span id="spanPreMarket" style="display:none;width:50px;color:white;background-color:darkred;font-family:Arial, Helvetica, sans-serif; font-size:10pt;vertical-align:middle; text-align:left" >&nbsp;Pre&nbsp;</span> 
-            <span id="spanRegularMarket" style="display:none;width:50px;color:white;background-color:darkred;font-family:Arial, Helvetica, sans-serif; font-size:10pt;vertical-align:middle; text-align:left" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> 
-            <span id="spanPostMarket" style="display:none;width:50px;color:white;background-color:darkred;font-family:Arial, Helvetica, sans-serif; font-size:10pt;vertical-align:middle; text-align:left" >&nbsp;Post&nbsp;</span> 
-            <span id="spanSpecialImage" style="display:none;"><img src="2019-rose-i-love-you-animation.gif" width="200" height="200"><img src="valentine_10_W.gif" width="200" height="200"></span>
-            <span id="spanDebug" style="font-family:Arial, Helvetica, sans-serif; font-size:10pt;vertical-align:middle; text-align:left" ></span>
-        </td>
-    </tr>
-    <tr>
-        <td id="tdIndexes">
-            <input type="checkbox" id="chkIndexDJI" name="chkIndexDJI" value="" checked onclick="chkIndexChanged(event)">
-            <label for="chkIndexDJI"> Dow</label>
-            <input type="checkbox" id="chkIndexNasdaq" name="chkIndexNasdaq" value="" checked onclick="chkIndexChanged(event)">
-            <label for="chkIndexNasdaq"> Nasdaq</label>
-            <input type="checkbox" id="chkIndexSP" name="chkIndexSP" value="" checked onclick="chkIndexChanged(event)">
-            <label for="chkIndexSP"> S&P 500</label>
-            <input type="checkbox" id="chkIndexLargeBio" name="chkIndexLargeBio" value="" checked onclick="chkIndexChanged(event)">
-            <label for="chkIndexLargeBio"> Large Bio</label>
-            <input type="checkbox" id="chkIndexSmallBio" name="chkIndexSmallBio" value="" checked onclick="chkIndexChanged(event)">
-            <label for="chkIndexSmallBio"> Small Bio</label>
-            <input type="checkbox" id="chkIndexOther" name="chkIndexOther" value="" onclick="chkIndexChanged(event)">
-            <label for="chkIndexOther"> Other</label>
-            <input type="button" style="border-radius:15px; visibility:visible;" id="btnWLSelect" name="btnWLSelect" value="Select Watchlists" onclick="SelectWatchlist()">
-            <input type="button" style="border-radius:15px;" id="btnWLReset" name="btnWLReset" value="Reset Watchlists" onclick="ResetWatchlist()">
-            <div id="spanIndexes" style="display:none; font-size:10pt;">
-                Index or stock symbols separated by commas:
-                <br />
-                <input id="txtIndexes" name="txtIndexes" type="search" style="font-family:Arial, Helvetica, sans-serif; font-size:10pt;width:300px" value="">
-            </div>
-        </td>
-    </tr>
-</table>
-<table id="tblIndexTable" style="font-family:Arial, Helvetica, sans-serif; font-size:10pt;width:330px">
-</table>
-<table style="font-family:Arial, Helvetica, sans-serif; font-size:12pt;width:800px">
-<tr>
-	<td style="vertical-align:top; text-align:left" >
-        <br />
-        Symbols (like amzn,aapl,msft or leave blank for all symbols):
-        <br />
-        <input id="txtSymbols" name="txtSymbols" type="search" style="font-family:Arial, Helvetica, sans-serif; font-size:12pt;width:300px" value="">
-        <input type="button" style="border-radius:5px; visibility:visible;" id="btnSymSelect" name="btnSymSelect" value="..." onclick="SelectWatchlistSymbols()">
-        <input type="button" style="border-radius:5px; visibility:visible;" id="btnSymFind" name="btnSymFind" value="Portfolio" onclick="FindSymbolsInWatchlists()">
-    </td>
-</tr>
-<tr>
-	<td style="vertical-align:top; text-align:left" >
-        Start Date (yyyy-mm-dd):
-        <br />
-        <input maxlength=10 id="txtStartDate" name="txtStartDate" type="search" style="font-family:Arial, Helvetica, sans-serif; font-size:12pt;width:300px" value="">
-    </td>
-</tr>
-<tr>
-	<td style="vertical-align:top; text-align:left" >
-        End Date (yyyy-mm-dd):
-        <br />
-        <input maxlength=10 id="txtEndDate" name="txtEndDate" type="search" style="font-family:Arial, Helvetica, sans-serif; font-size:12pt;width:300px" value="">
-    </td>
-</tr>
-<tr>
-	<td style="vertical-align:middle; text-align:left" >
+<BODY id="TheBody" style="background-color:#99CCFF; -webkit-text-size-adjust: 100%;" onload="window_onLoad()" onKeyUp="onKeyUp(event)" onkeydown="onKeyDown(event)">
+    <span id="spanWL" style="position:absolute; top:40px; left:800px; font-family:Arial, Helvetica, sans-serif; font-size:10pt;"></span>
+    <form id="wlForm" name="wlForm" style="display:none;font-family:Arial, Helvetica, sans-serif; ">
+        <div id="divWLSelect"></div>
+    </form>
+    <form id="pwdForm" name="pwdForm" style="display:block" onclick="onClick(event)">
+        <div id="divTDAPIError" style="display:none;color:darkred; font-family:Arial, Helvetica, sans-serif; font-size:12pt;"></div>
+        <table style="font-family:Arial, Helvetica, sans-serif; font-size:12pt;width:800px">
+            <tr>
+                <td id=tdLoggedOnAs>
+                    <span id="spanLoggedOnAs" style="color:black;font-family:Arial, Helvetica, sans-serif; font-size:14pt;vertical-align:top; text-align:left">Not logged on.</span>
+                    <span style="width:50px;font-family:Arial, Helvetica, sans-serif; font-size:10pt;vertical-align:middle; text-align:left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                    <span id="spanPreMarket" style="display:none;width:50px;color:white;background-color:darkred;font-family:Arial, Helvetica, sans-serif; font-size:10pt;vertical-align:middle; text-align:left">&nbsp;Pre&nbsp;</span>
+                    <span id="spanRegularMarket" style="display:none;width:50px;color:white;background-color:darkred;font-family:Arial, Helvetica, sans-serif; font-size:10pt;vertical-align:middle; text-align:left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                    <span id="spanPostMarket" style="display:none;width:50px;color:white;background-color:darkred;font-family:Arial, Helvetica, sans-serif; font-size:10pt;vertical-align:middle; text-align:left">&nbsp;Post&nbsp;</span>
+                    <span id="spanSpecialImage" style="display:none;"><img src="2019-rose-i-love-you-animation.gif" width="200" height="200"><img src="valentine_10_W.gif" width="200" height="200"></span>
+                    <span id="spanDebug" style="font-family:Arial, Helvetica, sans-serif; font-size:10pt;vertical-align:middle; text-align:left"></span>
+                </td>
+            </tr>
+            <tr>
+                <td id="tdIndexes">
+                    <input type="checkbox" id="chkIndexDJI" name="chkIndexDJI" value="" checked onclick="chkIndexChanged(event)">
+                    <label for="chkIndexDJI"> Dow</label>
+                    <input type="checkbox" id="chkIndexNasdaq" name="chkIndexNasdaq" value="" checked onclick="chkIndexChanged(event)">
+                    <label for="chkIndexNasdaq"> Nasdaq</label>
+                    <input type="checkbox" id="chkIndexSP" name="chkIndexSP" value="" checked onclick="chkIndexChanged(event)">
+                    <label for="chkIndexSP"> S&P 500</label>
+                    <input type="checkbox" id="chkIndexLargeBio" name="chkIndexLargeBio" value="" checked onclick="chkIndexChanged(event)">
+                    <label for="chkIndexLargeBio"> Large Bio</label>
+                    <input type="checkbox" id="chkIndexSmallBio" name="chkIndexSmallBio" value="" checked onclick="chkIndexChanged(event)">
+                    <label for="chkIndexSmallBio"> Small Bio</label>
+                    <input type="checkbox" id="chkIndexOther" name="chkIndexOther" value="" onclick="chkIndexChanged(event)">
+                    <label for="chkIndexOther"> Other</label>
+                    <input type="button" style="border-radius:15px; visibility:visible;" id="btnWLSelect" name="btnWLSelect" value="Select Watchlists" onclick="SelectWatchlist()">
+                    <input type="button" style="border-radius:15px;" id="btnWLReset" name="btnWLReset" value="Reset Watchlists" onclick="ResetWatchlist()">
+                    <div id="spanIndexes" style="display:none; font-size:10pt;">
+                        Index or stock symbols separated by commas:
+                        <br />
+                        <input id="txtIndexes" name="txtIndexes" type="search" style="font-family:Arial, Helvetica, sans-serif; font-size:10pt;width:300px" value="">
+                    </div>
+                </td>
+            </tr>
+        </table>
+        <table id="tblIndexTable" style="font-family:Arial, Helvetica, sans-serif; font-size:10pt;width:330px">
+        </table>
+        <table style="font-family:Arial, Helvetica, sans-serif; font-size:12pt;width:800px">
+            <tr>
+                <td style="vertical-align:top; text-align:left">
+                    <br />
+                    Symbols (like amzn,aapl,msft or leave blank for all symbols):
+                    <br />
+                    <input id="txtSymbols" name="txtSymbols" type="search" style="font-family:Arial, Helvetica, sans-serif; font-size:12pt;width:300px" value="">
+                    <input type="button" style="border-radius:5px; visibility:visible;" id="btnSymSelect" name="btnSymSelect" value="..." onclick="SelectWatchlistSymbols()">
+                    <input type="button" style="border-radius:5px; visibility:visible;" id="btnSymFind" name="btnSymFind" value="Portfolio" onclick="FindSymbolsInWatchlists()">
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align:top; text-align:left">
+                    Start Date (yyyy-mm-dd):
+                    <br />
+                    <input maxlength=10 id="txtStartDate" name="txtStartDate" type="search" style="font-family:Arial, Helvetica, sans-serif; font-size:12pt;width:300px" value="">
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align:top; text-align:left">
+                    End Date (yyyy-mm-dd):
+                    <br />
+                    <input maxlength=10 id="txtEndDate" name="txtEndDate" type="search" style="font-family:Arial, Helvetica, sans-serif; font-size:12pt;width:300px" value="">
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align:middle; text-align:left">
 
-        <br />
-        <input style="border-radius:15px; font-family:Arial, Helvetica, sans-serif; font-size:12pt;width: 110px; height:50px; visibility: visible" type="button" id="btnGetTrades" name="btnGetTrades" value="Get Trades" onclick="DoGetTrades()">
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <input style="border-radius:15px;font-family:Arial, Helvetica, sans-serif; font-size:12pt;width: 160px; height:25px; visibility: visible" type="button" id="btnGetStockPriceHistory" name="btnGetStockPriceHistory" value="Start Price History" onclick="DoGetStockPriceHistory()"><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Short time:&nbsp;<input maxlength=2 style="width: 30px; visibility: visible" type="text" id="txtShortTime" name="txtShortTime" onkeypress="return isNumberKey(event)" value="5">&nbsp;Long time:&nbsp;<input maxlength=2 style="width: 30px; visibility: visible" type="text" id="txtLongTime" name="txtLongTime" onkeypress="return isNumberKey(event)" value="40">&nbsp;&nbsp;<span id="spanRunning" style="background-color:green;color:white; visibility:hidden">Running</span>
-	</td>
-</tr>
-<tr>
-    <td>
-        <div id="myProgress">
-            <div id="myBar"></div>
+                    <br />
+                    <input style="border-radius:15px; font-family:Arial, Helvetica, sans-serif; font-size:12pt;width: 110px; height:50px; visibility: visible" type="button" id="btnGetTrades" name="btnGetTrades" value="Get Trades" onclick="DoGetTrades()">
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <input style="border-radius:15px;font-family:Arial, Helvetica, sans-serif; font-size:12pt;width: 160px; height:25px; visibility: visible" type="button" id="btnGetStockPriceHistory" name="btnGetStockPriceHistory" value="Start Price History" onclick="DoGetStockPriceHistory()"><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Short time:&nbsp;<input maxlength=2 style="width: 30px; visibility: visible" type="text" id="txtShortTime" name="txtShortTime" onkeypress="return isNumberKey(event)" value="5">&nbsp;Long time:&nbsp;<input maxlength=2 style="width: 30px; visibility: visible" type="text" id="txtLongTime" name="txtLongTime" onkeypress="return isNumberKey(event)" value="40">&nbsp;&nbsp;<span id="spanRunning" style="background-color:green;color:white; visibility:hidden">Running</span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div id="myProgress">
+                        <div id="myBar"></div>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align:top; text-align:left;font-family:Arial, Helvetica, sans-serif; font-size:10pt;">
+                    <input type="checkbox" id="chkUseExtended" name="chkUseExtended" value="" onclick="UseExtendedChanged(event)">
+                    <label for="chkUseExtended"> Extended Hours</label>
+                    <input type="checkbox" id="chkUseEnterToTogglePriceHistory" name="chkUseEnterToTogglePriceHistory" value="" onclick="UseEnterToTogglePriceHistory(event)">
+                    <label for="chkUseEnterToTogglePriceHistory"> Use Enter to Start or Stop Price History</label>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align:top; text-align:left;font-family:Arial, Helvetica, sans-serif; font-size:10pt;">
+                    <input type="checkbox" id="chkUseLastTradingDay" name="chkUseLastTradingDay" value="" onclick="UseLastTradingDayChanged(event)">
+                    <label for="chkUseLastTradingDay"> Use Last Trading Day (set the Start Date field <br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;to the last trading day) (only used if the market is closed)</label>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align:top; text-align:left;font-family:Arial, Helvetica, sans-serif; font-size:10pt;">
+                    <input type="checkbox" id="chkCollectDetail" name="chkCollectDetail" value="" onclick="CollectDetailChanged(event)">
+                    <label for="chkUseLastTradingDay"> Allow Collection and Display of Detail for Each Symbol</label>
+                </td>
+            </tr>
+        </table>
+
+    </form>
+    <form id="MainForm" name="MainForm" style="display:block">
+        <div id="tblSymbols" style="visibility:hidden; width:500px; position:absolute; top:0px; left:0px">
+            <table style="width:100%; border-width:1px; border-style:solid;border-spacing:1px;border-color:White">
+                <tr>
+                    <!--
+                        <th id="nameTitle" style="width:480px;font-family:Arial, Helvetica, sans-serif; font-size:12pt;vertical-align:top; border-width:1px; border-style:solid;border-spacing:1px;border-color:White">&nbsp;</th>
+                    -->
+                    <th id="nameTitle" style="width:480px; font-family:Arial, Helvetica, sans-serif; font-size:12pt; vertical-align:middle; border-top-width:1px; border-bottom-width:1px; border-left-width:1px; border-right-width:0px; border-style:solid;border-spacing:1px;border-color:White">&nbsp;</th>
+                    <th style="width:18px; text-align:right; font-family:Arial, Helvetica, sans-serif; font-size:12pt; vertical-align:middle; border-top-width:1px; border-bottom-width:1px; border-left-width:0px; border-right-width:1px; border-style:solid;border-spacing:1px;border-color:White;" onclick="DoHideDiv('tblSymbols')">X&nbsp;&nbsp;</th>
+                </tr>
+                <!--  -->
+                <tr>
+                    <td ID="nameID" colspan="2" style="font-family:Arial, Helvetica, sans-serif; font-size:12pt;width:100%; vertical-align:top;border-width:1px; border-style:solid;border-spacing:1px;border-color:White">
+                        <DIV ID="name" STYLE="overflow: auto;"></DIV>
+                    </td>
+                </tr>
+            </table>
+            <br /><br />
         </div>
-    </td>
-</tr>
-<tr>
-	<td style="vertical-align:top; text-align:left;font-family:Arial, Helvetica, sans-serif; font-size:10pt;" >
-        <input type="checkbox" id="chkUseExtended" name="chkUseExtended" value="" onclick="UseExtendedChanged(event)">
-        <label for="chkUseExtended"> Extended Hours</label>
-        <input type="checkbox" id="chkUseEnterToTogglePriceHistory" name="chkUseEnterToTogglePriceHistory" value="" onclick="UseEnterToTogglePriceHistory(event)">
-        <label for="chkUseEnterToTogglePriceHistory"> Use Enter to Start or Stop Price History</label>
-    </td>
-</tr>
-<tr>
-	<td style="vertical-align:top; text-align:left;font-family:Arial, Helvetica, sans-serif; font-size:10pt;" >
-        <input type="checkbox" id="chkUseLastTradingDay" name="chkUseLastTradingDay" value="" onclick="UseLastTradingDayChanged(event)">
-        <label for="chkUseLastTradingDay"> Use Last Trading Day (set the Start Date field <br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;to the last trading day) (only used if the market is closed)</label>
-    </td>
-</tr>
-<tr>
-	<td style="vertical-align:top; text-align:left;font-family:Arial, Helvetica, sans-serif; font-size:10pt;" >
-        <input type="checkbox" id="chkCollectDetail" name="chkCollectDetail" value="" onclick="CollectDetailChanged(event)">
-        <label for="chkUseLastTradingDay"> Allow Collection and Display of Detail for Each Symbol</label>
-    </td>
-</tr>
-</table>
+        <div id="tblDetail" style="visibility:hidden; position:absolute; top:0px; left:510px; width:500px;">
+            <table style="width:100%; border-width:1px; border-style:solid;border-spacing:1px;border-color:White">
+                <tr>
+                    <!--
+                        <th style="font-family:Arial, Helvetica, sans-serif; font-size:12pt;width:100%; vertical-align:top; border-width:1px; border-style:solid;border-spacing:1px;border-color:White">Detail</th>
+                    -->
+                    <th id="detailTitle" style="width:480px; font-family:Arial, Helvetica, sans-serif; font-size:12pt; vertical-align:middle; border-top-width:1px; border-bottom-width:1px; border-left-width:1px; border-right-width:0px; border-style:solid;border-spacing:1px;border-color:White">Detail</th>
+                    <th style="width:18px; text-align:right; font-family:Arial, Helvetica, sans-serif; font-size:12pt; vertical-align:middle; border-top-width:1px; border-bottom-width:1px; border-left-width:0px; border-right-width:1px; border-style:solid;border-spacing:1px;border-color:White;" onclick="DoHideDiv('tblDetail')">X&nbsp;&nbsp;</th>
+                </tr>
+                <!--  -->
+                <tr>
+                    <td colspan="2" style="font-family:Arial, Helvetica, sans-serif; font-size:12pt;width:100%; vertical-align:top;border-width:1px; border-style:solid;border-spacing:1px;border-color:White">
+                        <DIV ID="miscname" STYLE="width:100%; overflow:hidden"></DIV>
+                        <DIV ID="mischead" STYLE="border-width:0px; width:100%; overflow:hidden"></DIV>
+                        <DIV ID="misc" STYLE="width:100%; overflow: auto"></DIV>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </form>
 
-</form>
-<form id="MainForm" name="MainForm" style="display:block" >
-<div id="tblSymbols" style="visibility:hidden; width:500px; position:absolute; top:0px; left:0px">
-    <table style="width:100%; border-width:1px; border-style:solid;border-spacing:1px;border-color:White">
-        <tr>
-        <!--  
-            <th id="nameTitle" style="width:480px;font-family:Arial, Helvetica, sans-serif; font-size:12pt;vertical-align:top; border-width:1px; border-style:solid;border-spacing:1px;border-color:White">&nbsp;</th>
-        -->
-            <th id="nameTitle" style="width:480px; font-family:Arial, Helvetica, sans-serif; font-size:12pt; vertical-align:middle; border-top-width:1px; border-bottom-width:1px; border-left-width:1px; border-right-width:0px; border-style:solid;border-spacing:1px;border-color:White">&nbsp;</th>
-            <th style="width:18px; text-align:right; font-family:Arial, Helvetica, sans-serif; font-size:12pt; vertical-align:middle; border-top-width:1px; border-bottom-width:1px; border-left-width:0px; border-right-width:1px; border-style:solid;border-spacing:1px;border-color:White;" onclick="DoHideDiv('tblSymbols')" >X&nbsp;&nbsp;</th>
-        </tr>
-        <!--  -->
-        <tr>
-	        <td ID="nameID" colspan="2" style="font-family:Arial, Helvetica, sans-serif; font-size:12pt;width:100%; vertical-align:top;border-width:1px; border-style:solid;border-spacing:1px;border-color:White">
-		        <DIV ID="name" STYLE="overflow: auto;"></DIV>
-	        </td>
-        </tr>
-    </table>
-    <br /><br />
-</div>
-<div id="tblDetail" style="visibility:hidden; position:absolute; top:0px; left:510px; width:500px;">
-    <table style="width:100%; border-width:1px; border-style:solid;border-spacing:1px;border-color:White">
-        <tr>
-        <!--  
-            <th style="font-family:Arial, Helvetica, sans-serif; font-size:12pt;width:100%; vertical-align:top; border-width:1px; border-style:solid;border-spacing:1px;border-color:White">Detail</th>
-        -->
-            <th id="detailTitle" style="width:480px; font-family:Arial, Helvetica, sans-serif; font-size:12pt; vertical-align:middle; border-top-width:1px; border-bottom-width:1px; border-left-width:1px; border-right-width:0px; border-style:solid;border-spacing:1px;border-color:White">Detail</th>
-            <th style="width:18px; text-align:right; font-family:Arial, Helvetica, sans-serif; font-size:12pt; vertical-align:middle; border-top-width:1px; border-bottom-width:1px; border-left-width:0px; border-right-width:1px; border-style:solid;border-spacing:1px;border-color:White;" onclick="DoHideDiv('tblDetail')" >X&nbsp;&nbsp;</th>
-        </tr>
-        <!--  -->
-        <tr>
-	        <td colspan="2" style="font-family:Arial, Helvetica, sans-serif; font-size:12pt;width:100%; vertical-align:top;border-width:1px; border-style:solid;border-spacing:1px;border-color:White">
-		        <DIV ID="miscname"  STYLE="width:100%; overflow:hidden"></DIV>
-		        <DIV ID="mischead"  STYLE="border-width:0px; width:100%; overflow:hidden"></DIV>
-		        <DIV ID="misc" STYLE="width:100%; overflow: auto"></DIV>
-	        </td>
-        </tr>
-    </table>
-</div>
-</form>
-
-<span id="spanWLSelectSymbols" style="position:absolute; top:0px; left:0px; visibility:hidden;">
-</span>
-<span id="spanWLSelectWatchlists" style="position:absolute; top:-1000px; left:0px; visibility:hidden;">
-</span>
+    <span id="spanWLSelectSymbols" style="position:absolute; top:0px; left:0px; visibility:hidden;">
+    </span>
+    <span id="spanWLSelectWatchlists" style="position:absolute; top:-1000px; left:0px; visibility:hidden;">
+    </span>
 
 </BODY>
 </HTML>
