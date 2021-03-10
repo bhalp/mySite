@@ -1,4 +1,4 @@
-var gsCurrentVersion = "6.31 2021-03-09 17:30";  // 1/5/21 - v5.6 - added the ability to show the current version by pressing shift F12
+var gsCurrentVersion = "6.31 2021-03-09 17:45";  // 1/5/21 - v5.6 - added the ability to show the current version by pressing shift F12
 var gsInitialStartDate = "2020-05-01";
 function FixedPrice() {
     this.symbol = "";
