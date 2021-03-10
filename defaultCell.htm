@@ -8614,7 +8614,7 @@
     }
 
     function PageLoad() {
-        debugger
+        //debugger
         gbUsingCell = true;
         gsRedirectURL = "https://bhalp.github.io/mySite/defaultCell.htm";
         let sBearerCode = location.search;
@@ -8622,7 +8622,7 @@
 //        gsBearerCode = location.search.split('=')[1];
         document.getElementById("TheBody").style.backgroundColor = gsBodyBackgroundColor;
         if (gbUsingCell) {
-            document.getElementById("spanInfo").display = "inline";
+            document.getElementById("spanInfo").style.display = "inline";
             let sTmp = ""
             sTmp = "<input type=\"checkbox\" id=\"chkIndexDJI\" name=\"chkIndexDJI\" value=\"\" checked onclick=\"chkIndexChanged(event)\">" +
                 "<label for=\"chkIndexDJI\"> Dow</label>" +
