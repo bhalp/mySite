@@ -31,17 +31,21 @@
     <script type="text/javascript" src="JSON.js"></script>
     <script type="text/javascript">
     <!--
+        var gsRefreshToken = "";
+        var gsAccessTokenExpirationTime = "";
+        var gsBearerCode = "";
+
         var gbUsingCell = true;
         var gbShowSavedOrders = false;
-        var gsRedirectURL = "https://bhalp.github.io/mySite/defaultCell.htm";
-        //var gsRedirectURL = "https://bhalp.github.io/mySiteTest/defaultCell.htm";
+        //var gsRedirectURL = "https://bhalp.github.io/mySite/defaultCell.htm";
+        var gsRedirectURL = "https://bhalp.github.io/mySiteTest/defaultCell.htm";
         //var gsRedirectURL = "https://localhost:8080";
         var gsTDAPIKey = "5V5GTTHEURLAUGI2JAFC06QKAIVPAVYF"; //MyGainLoss2
         //var gsTDAPIKey = "VTBLS2XWYV8HCIHN8JSTSHEZTFZXNI93"; //MyGainLoss
 
         //------   main.js code starts here   ---------------------------------------------------------------------------------
 
-        var gsCurrentVersion = "6.4 2021-03-17 01:50";  // 1/5/21 - v5.6 - added the ability to show the current version by pressing shift F12
+        var gsCurrentVersion = "6.4 2021-03-20 19:46";  // 1/5/21 - v5.6 - added the ability to show the current version by pressing shift F12
         var gsInitialStartDate = "2020-05-01";
 
         String.prototype.toProperCase = function (opt_lowerCaseTheRest) {
@@ -113,11 +117,6 @@
         }
 
         var gAccessToken = new AccessToken();
-        //var gsRefreshToken = "<%=gsRefresh_token%>";
-        //var gsAccessTokenExpirationTime = "<%=gsAccess_token_expiration_time%>";
-        var gsRefreshToken = "";
-        var gsAccessTokenExpirationTime = "";
-        var gsBearerCode = "";
 
         var giAPIErrorTimeoutId = 0;
 
@@ -3530,8 +3529,7 @@
 
             urlEncodedDataPairs.push("grant_type=" + DoURLEncode("authorization_code"));
             urlEncodedDataPairs.push("access_type=" + DoURLEncode("offline"));
-            urlEncodedDataPairs.push(gsBearerCode);
-            //urlEncodedDataPairs.push("code=" + gsBearerCode);
+            urlEncodedDataPairs.push("code=" + gsBearerCode);
             urlEncodedDataPairs.push("client_id=" + DoURLEncode(gsTDAPIKey));
             urlEncodedDataPairs.push("redirect_uri=" + DoURLEncode(gsRedirectURL));
             //urlEncodedDataPairs.push("redirect_uri=" + DoURLEncode("https://localhost:8080"));
@@ -3569,7 +3567,10 @@
                                 oCM = myJSON.parse(xhttp.responseText);
                                 checkTDAPIError(oCM);
                                 gAccessToken.access_token = oCM["access_token"];
-                                gAccessToken.refresh_token = oCM["refresh_token"];
+                                if (!isUndefined(oCM["refresh_token"])) {
+                                    gAccessToken.refresh_token = DoURLEncode(oCM["refresh_token"]);
+                                }
+                                //gAccessToken.refresh_token = oCM["refresh_token"];
                                 gAccessToken.token_type = oCM["token_type"];
                                 gAccessToken.expires_in = oCM["expires_in"];
                                 gAccessToken.scope = oCM["scope"];
@@ -3625,7 +3626,8 @@
                 urlEncodedDataPairs = [];
 
             urlEncodedDataPairs.push("grant_type=" + DoURLEncode("refresh_token"));
-            urlEncodedDataPairs.push("refresh_token=" + DoURLEncode(gAccessToken.refresh_token));
+            //urlEncodedDataPairs.push("refresh_token=" + DoURLEncode(gAccessToken.refresh_token));
+            urlEncodedDataPairs.push("refresh_token=" + gAccessToken.refresh_token);
             urlEncodedDataPairs.push("client_id=" + DoURLEncode(gsTDAPIKey));
 
 
@@ -9761,7 +9763,20 @@
         function PageLoad() {
             //debugger
             let sBearerCode = location.search;
-            gsBearerCode = sBearerCode.substr(1, sBearerCode.length - 1);
+            //    alert("sBearerCode = " + sBearerCode);
+            try {
+                let sTmp = sBearerCode.substr(0, "?code=".length);
+                if (sTmp == "?code=") {
+                    gsBearerCode = sBearerCode.split('=')[1];
+                } else {
+                    gsAccess_token_expiration_time = sBearerCode.split('&')[0].split('=')[1];
+                    gsRefreshToken = sBearerCode.split('&')[1].split('=')[1];
+                }
+            } catch (e1) {
+                gsBearerCode = "";
+                gsAccess_token_expiration_time = "";
+                gsRefreshToken = "";
+            }
             //        gsBearerCode = location.search.split('=')[1];
             document.getElementById("TheBody").style.backgroundColor = gsBodyBackgroundColor;
             if (gbUsingCell) {
