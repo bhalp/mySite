@@ -45,7 +45,7 @@
 
         //------   main.js code starts here   ---------------------------------------------------------------------------------
 
-        var gsCurrentVersion = "6.5 2021-03-25 23:12";  // 1/5/21 - v5.6 - added the ability to show the current version by pressing shift F12
+        var gsCurrentVersion = "6.5 2021-03-26 00:00";  // 1/5/21 - v5.6 - added the ability to show the current version by pressing shift F12
         var gsInitialStartDate = "2020-05-01";
 
         String.prototype.toProperCase = function (opt_lowerCaseTheRest) {
@@ -6766,7 +6766,7 @@
                                     sThisDiv = sThisDiv + "<td colspan=\"4\" style=\"vertical-align:top;border-width:1px; border-style:solid;border-spacing:1px;border-color:White\">";
                                 } else { //not using cell
 
-                                    if (gWatchlists[idxWLMain].watchlistId == sLastWLAccountId) { //don't show Open and Close if this is an Account watchlist
+                                    if (gWatchlists[idxWL].watchlistId == sLastWLAccountId) { //don't show Open and Close if this is an Account watchlist
                                         sThisDiv = sThisDiv + "<div style=\"width:" + gsWLWidth + "; font-family:Arial, Helvetica, sans-serif; font-size:10pt;\">";
                                         sThisDiv = sThisDiv + "<table style=\"width:" + gsWLWidth + "; background-color:" + gsWLTableHeadingBackgroundColor + "; border-width:1px; border-style:solid; border-spacing:1px; border-color:White; font-family:Arial, Helvetica, sans-serif; font-size:10pt; \">";
                                         sThisDiv = sThisDiv + "<tr>";
@@ -6807,34 +6807,36 @@
                                         sThisDiv = sThisDiv + "<tr>";
                                         sThisDiv = sThisDiv + "<th colspan=\"4\" style=\"text-align:left; vertical-align:middle; border-top-width:1px; border-bottom-width:1px; border-left-width:1px; border-right-width:1px; border-style:solid;border-spacing:0px;border-color:White\" >";
                                     }
+
+                                    sThisDiv = sThisDiv + "&nbsp;<input type=\"button\" style=\"border-radius:5px; font-family:Arial, Helvetica, sans-serif; font-size:10pt;\"  onclick=\"DoWLSell(" + idxWLMain.toString() + ")\" value=\"Sell\" >" +
+                                        "&nbsp;&nbsp;<input id=\"txtsellpercent" + sThisId + "\" name=\"txtsellpercent" + sThisId + "\" type=\"text\" style=\"font-family:Arial,Helvetica, sans-serif; font-size:10pt; width:30px\" value=\"\">%";
+
+                                    sThisDiv = sThisDiv + "&nbsp;&nbsp;<input type=\"checkbox\" id=\"chksellLimit" + sThisId + "\" name=\"chksellLimit" + sThisId + "\" value=\"\" > Limit";
+
+
+                                    sThisDiv = sThisDiv + "<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>" +
+                                        "&nbsp;<input type=\"button\" style=\"border-radius:5px; font-family:Arial, Helvetica, sans-serif; font-size:10pt;\"  onclick=\"DoWLTrailingStop(" + idxWLMain.toString() + ")\" value=\"Trailing Stop\" >" +
+                                        "&nbsp;&nbsp;<input id=\"txttrailingstoppercent" + sThisId + "\" name=\"txttrailingstoppercent" + sThisId + "\" type=\"text\" style=\"font-family:Arial,Helvetica, sans-serif; font-size:10pt; width:30px\" value=\"\">%";
+
+
+                                    sThisDiv = sThisDiv + "<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>" +
+                                        "<input type=\"button\" style=\"border-radius:5px; font-family:Arial, Helvetica, sans-serif; font-size:10pt;\"  onclick=\"DoWLBuy(" + idxWLMain.toString() + ")\" value=\"Buy\" >" +
+                                        "&nbsp;&nbsp;<input id=\"txtbuypercent" + sThisId + "\" name=\"txtbuypercent" + sThisId + "\" type=\"text\" style=\"font-family:Arial,Helvetica, sans-serif; font-size:10pt; width:30px\" value=\"\">%" +
+                                        "&nbsp;&nbsp;&nbsp;&nbsp;OR&nbsp;&nbsp;&nbsp;&nbsp;" +
+                                        "&dollar;<input id=\"txtbuydollars" + sThisId + "\" name=\"txtbuydollars" + sThisId + "\" type=\"text\" style=\"font-family:Arial,Helvetica, sans-serif; font-size:10pt; width:45px\" value=\"\">";
+                                    sThisDiv = sThisDiv + "&nbsp;&nbsp;<input type=\"checkbox\" id=\"chkbuyLimit" + sThisId + "\" name=\"chkbuyLimit" + sThisId + "\" value=\"\" > Limit";
+
+                                    sThisDiv = sThisDiv + "</th > ";
+
+                                    sThisDiv = sThisDiv + "</tr>";
+
+
+                                    sThisDiv = sThisDiv + "<tr>";
+
+                                    sThisDiv = sThisDiv + "<td colspan=\"4\" style=\"vertical-align:top;border-width:1px; border-style:solid;border-spacing:1px;border-color:White\">";
+
                                 }
 
-                                sThisDiv = sThisDiv + "&nbsp;<input type=\"button\" style=\"border-radius:5px; font-family:Arial, Helvetica, sans-serif; font-size:10pt;\"  onclick=\"DoWLSell(" + idxWLMain.toString() + ")\" value=\"Sell\" >" +
-                                    "&nbsp;&nbsp;<input id=\"txtsellpercent" + sThisId + "\" name=\"txtsellpercent" + sThisId + "\" type=\"text\" style=\"font-family:Arial,Helvetica, sans-serif; font-size:10pt; width:30px\" value=\"\">%";
-
-                                sThisDiv = sThisDiv + "&nbsp;&nbsp;<input type=\"checkbox\" id=\"chksellLimit" + sThisId + "\" name=\"chksellLimit" + sThisId + "\" value=\"\" > Limit";
-
-
-                                sThisDiv = sThisDiv + "<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>" +
-                                    "&nbsp;<input type=\"button\" style=\"border-radius:5px; font-family:Arial, Helvetica, sans-serif; font-size:10pt;\"  onclick=\"DoWLTrailingStop(" + idxWLMain.toString() + ")\" value=\"Trailing Stop\" >" +
-                                    "&nbsp;&nbsp;<input id=\"txttrailingstoppercent" + sThisId + "\" name=\"txttrailingstoppercent" + sThisId + "\" type=\"text\" style=\"font-family:Arial,Helvetica, sans-serif; font-size:10pt; width:30px\" value=\"\">%";
-
-
-                                sThisDiv = sThisDiv + "<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>" +
-                                    "<input type=\"button\" style=\"border-radius:5px; font-family:Arial, Helvetica, sans-serif; font-size:10pt;\"  onclick=\"DoWLBuy(" + idxWLMain.toString() + ")\" value=\"Buy\" >" +
-                                    "&nbsp;&nbsp;<input id=\"txtbuypercent" + sThisId + "\" name=\"txtbuypercent" + sThisId + "\" type=\"text\" style=\"font-family:Arial,Helvetica, sans-serif; font-size:10pt; width:30px\" value=\"\">%" +
-                                    "&nbsp;&nbsp;&nbsp;&nbsp;OR&nbsp;&nbsp;&nbsp;&nbsp;" +
-                                    "&dollar;<input id=\"txtbuydollars" + sThisId + "\" name=\"txtbuydollars" + sThisId + "\" type=\"text\" style=\"font-family:Arial,Helvetica, sans-serif; font-size:10pt; width:45px\" value=\"\">";
-                                sThisDiv = sThisDiv + "&nbsp;&nbsp;<input type=\"checkbox\" id=\"chkbuyLimit" + sThisId + "\" name=\"chkbuyLimit" + sThisId + "\" value=\"\" > Limit";
-
-                                sThisDiv = sThisDiv + "</th > ";
-
-                                sThisDiv = sThisDiv + "</tr>";
-
-
-                                sThisDiv = sThisDiv + "<tr>";
-
-                                sThisDiv = sThisDiv + "<td colspan=\"4\" style=\"vertical-align:top;border-width:1px; border-style:solid;border-spacing:1px;border-color:White\">";
 
                                 sThisDiv = sThisDiv + "<div id=\"divtable" + sThisId + "\" style =\"border-spacing:0px; font-family:Arial, Helvetica, sans-serif; font-size:10pt;\">";
                                 sThisTable = "";
@@ -10330,7 +10332,7 @@
         }
 
         function PageLoad() {
-            debugger
+            //debugger
             let sBearerCode = location.search;
             //    alert("sBearerCode = " + sBearerCode);
             try {
