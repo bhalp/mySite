@@ -1,4 +1,4 @@
-var gsCurrentVersion = "8.2 2021-08-03 23:04"  // 1/5/21 - v5.6 - added the ability to show the current version by pressing shift F12
+var gsCurrentVersion = "8.2 2021-08-04 17:04"  // 1/5/21 - v5.6 - added the ability to show the current version by pressing shift F12
 var gsInitialStartDate = "2020-05-01";
 
 var gsRefreshToken = "";
@@ -521,7 +521,9 @@ var gsFieldWidthsWLO = {
     "ActPrice": "width:70px;",
     "Time-in-Force": "width:100px;",
     "Opened": "width:130px;",
-    "Closed": "width:130px;"
+    "OpenedCell": "width:140px;",
+    "Closed": "width:130px;",
+    "ClosedCell": "width:140px;"
 }
 
 
@@ -542,6 +544,7 @@ var lengthsWLSOWLCol1Width = lengthsWLSO.WLColOpenLabelWidth + lengthsWLSO.WLCol
 
 const lengthsWLO = {
     WLWidth: "940px",
+    WLWidthCell: "960px",
     WLColOpenLabelWidth: 80,
     WLColOpenEntryWidth: 110,
     WLColAcquiredDateEntryWidth: 80,
@@ -10504,62 +10507,97 @@ function GetWatchlistO() {
                     //sLastWLAccountId = gWatchlists[idxWL].accountId;
                     //sThisId = gWatchlists[idxWL].watchlistId + sLastWLAccountId;
 
+                    //if (gbUsingCell) {
+                    //    sThisDiv = sThisDiv + "<div style=\"width:800px; font-family:Arial, Helvetica, sans-serif; font-size:10pt;\">";
+                    //    sThisDiv = sThisDiv + "<table style=\"width:800px; background-color:" + gsWLTableHeadingBackgroundColor + "; border-width:1px; border-style:solid; border-spacing:1px; border-color:White; font-family:Arial, Helvetica, sans-serif; font-size:10pt; \">";
+                    //    sThisDiv = sThisDiv + "<tr>";
+
+                    //    sThisDiv = sThisDiv + "<th style=\"height:30px; text-align:left; vertical-align:middle;border-top-width:1px;border-bottom-width:1px;border-left-width:1px;border-right-width:0px;border-style:solid;border-spacing:0px;border-color:White\">" +
+                    //        "&nbsp;From:&nbsp;<input id=\"txtOStart" + sThisId + "\" name=\"txtOStart" + sThisId + "\" type=\"text\" style=\"width:" + lengthsWLO.WLColAcquiredDateEntryWidth.toString() + "px;font-family:Arial,Helvetica, sans-serif; font-size:10pt; \" value=\"" + FormatCurrentDateForTD() + "\">" +
+                    //        "&nbsp;To:&nbsp;<input id=\"txtOEnd" + sThisId + "\" name=\"txtOEnd" + sThisId + "\" type=\"text\" style=\"width:" + lengthsWLO.WLColAcquiredDateEntryWidth.toString() + "px;font-family:Arial,Helvetica, sans-serif; font-size:10pt; \" value=\"" + FormatCurrentDateForTD() + "\">" +
+                    //        "&nbsp;<input id=\"chkUseDates" + sThisId + "\" name=\"chkUseDates" + sThisId + "\"  style=\"text-align:left;vertical-align:middle; \" type=\"checkbox\" value=\"\" ></th>";
+
+                    //    sThisDiv = sThisDiv + "<th style=\"height:30px; vertical-align:middle; border-top-width:1px; border-bottom-width:1px; border-left-width:0px; border-right-width:0px; border-style:solid;border-spacing:0px;border-color:White\">" +
+                    //        "<span style=\"vertical-align: middle;\" id=\"spanWLNumChecked" + sThisId + "\" name=\"spanWLNumChecked" + sThisId + "\">&nbsp;</span>" +
+                    //        "<span style=\"vertical-align: middle;\"><b>" + sLastWLAccountName + "--" + sLastWLName + "&nbsp;&nbsp;</b></span>" +
+                    //        "<img height=\"20\" width=\"20\" style=\"vertical-align:middle;\" src=\"xxximgMaxRestorexxx\" id=\"spanMaxRestore" + sThisId + "\" onclick=\"wlDoMaximizeRestore('" + sLastWLAccountId + "', '" + gWatchlists[idxWL].watchlistId + "')\">" +
+                    //        "&nbsp;&nbsp;&nbsp;&nbsp;<img height=\"20\" width=\"20\" style=\"vertical-align:middle;\" src=\"print-icon25px.png\" onclick=\"printdiv('xxxPrintDivNamexxx')\">" +
+                    //        "<span style=\"vertical-align: middle;\" id=\"spanODate" + sThisId + "\" name=\"spanODate" + sThisId + "\">&nbsp;&nbsp;&nbsp;&nbsp;" + sDate + "</span></th > ";
+
+                    //    sThisDiv = sThisDiv + "<th style=\"height:30px; text-align:right;vertical-align:middle;border-top-width:1px;border-bottom-width:1px;border-left-width:0px;border-right-width:0px;border-style:solid;border-spacing:0px;border-color:White\">" +
+                    //        "<input type=\"button\" style=\"border-radius:5px; font-family:Arial, Helvetica, sans-serif; font-size:10pt;\"  onclick=\"DoOCancelOrders('" + gWatchlists[idxWL].watchlistId + "','" +  sLastWLAccountId + "')\" value=\"Cancel\" ></th>";
+
+                    //    sThisDiv = sThisDiv + "<th style=\"height:30px;text-align:right; vertical-align:middle; border-top-width:1px; border-bottom-width:1px; border-left-width:0px; border-right-width:1px; border-style:solid; border-spacing:1px; border-color: White\" onclick=\"wlDoRemoveDiv('" + gWatchlists[idxWL].watchlistId + "','" + sLastWLAccountId + "')\">&nbsp;&nbsp;&nbsp;&nbsp;X&nbsp;&nbsp;</th>";
+
+                    //    sThisDiv = sThisDiv + "</tr>";
+
+                    //    sThisDiv = sThisDiv + "<tr>";
+                    //    sThisDiv = sThisDiv + "<td colspan=\"4\" style=\"vertical-align:top;border-width:1px; border-style:solid;border-spacing:1px;border-color:White\">";
+                    //} else { //not using cell
+
+                    //    sThisDiv = sThisDiv + "<div style=\"width:" + lengthsWLO.WLWidth + "; font-family:Arial, Helvetica, sans-serif; font-size:10pt;\">";
+                    //    sThisDiv = sThisDiv + "<table style=\"width:" + lengthsWLO.WLWidth + "; background-color:" + gsWLTableHeadingBackgroundColor + "; border-width:1px; border-style:solid; border-spacing:1px; border-color:White; font-family:Arial, Helvetica, sans-serif; font-size:10pt; \">";
+                    //    sThisDiv = sThisDiv + "<tr>";
+
+                    //    sThisDiv = sThisDiv + "<th style=\"width:" + (lengthsWLO.WLColOpenLabelWidth + lengthsWLO.WLColOpenEntryWidth + lengthsWLO.WLColAcquiredDateEntryWidth).toString() + "px; text-align:left; vertical-align:middle;border-top-width:1px;border-bottom-width:1px;border-left-width:1px;border-right-width:0px;border-style:solid;border-spacing:0px;border-color:White\">" +
+                    //        "&nbsp;From:&nbsp;<input id=\"txtOStart" + sThisId + "\" name=\"txtOStart" + sThisId + "\" type=\"text\" style=\"width:" + lengthsWLO.WLColAcquiredDateEntryWidth.toString() + "px;font-family:Arial,Helvetica, sans-serif; font-size:10pt; \" value=\"" + FormatCurrentDateForTD() + "\">" +
+                    //        "&nbsp;To:&nbsp;<input id=\"txtOEnd" + sThisId + "\" name=\"txtOEnd" + sThisId + "\" type=\"text\" style=\"width:" + lengthsWLO.WLColAcquiredDateEntryWidth.toString() + "px;font-family:Arial,Helvetica, sans-serif; font-size:10pt; \" value=\"" + FormatCurrentDateForTD() + "\">" +
+                    //        "&nbsp;<input id=\"chkUseDates" + sThisId + "\" name=\"chkUseDates" + sThisId + "\"  style=\"text-align:left;vertical-align:middle; \" type=\"checkbox\" value=\"\" ></th>";
+
+
+                    //    sThisDiv = sThisDiv + "<th style=\"height:30px; width:" + lengthsWLO.WLColTitleWidth.toString() + "px; vertical-align:middle; border-top-width:1px; border-bottom-width:1px; border-left-width:0px; border-right-width:0px; border-style:solid;border-spacing:0px;border-color:White\">" +
+                    //        "<span style=\"vertical-align: middle;\" id=\"spanWLNumChecked" + sThisId + "\" name=\"spanWLNumChecked" + sThisId + "\">&nbsp;</span>" +
+                    //        "<span style=\"vertical-align: middle;\"><b>" + sLastWLAccountName + "--" + sLastWLName + "&nbsp;&nbsp;</b></span>" +
+                    //        "<img height=\"20\" width=\"20\" style=\"vertical-align:middle;\" src=\"xxximgMaxRestorexxx\" id=\"spanMaxRestore" + sThisId + "\" onclick=\"wlDoMaximizeRestore('" + sLastWLAccountId + "', '" + gWatchlists[idxWL].watchlistId + "')\">" +
+                    //        "<img height=\"20\" width=\"20\" style=\"vertical-align:middle;\" src=\"print-icon25px.png\" onclick=\"printdiv('xxxPrintDivNamexxx')\">" +
+                    //        "<span style=\"vertical-align: middle;\" id=\"spanODate" + sThisId + "\" name=\"spanODate" + sThisId + "\">&nbsp;&nbsp;&nbsp;&nbsp;" + sDate + "</span></th >";
+
+                    //    sThisDiv = sThisDiv + "<th style=\"width:" + (lengthsWLO.WLColCloseLabelWidth + lengthsWLO.WLColCloseEntryWidth).toString() + "px;text-align:right;vertical-align:middle;border-top-width:1px;border-bottom-width:1px;border-left-width:0px;border-right-width:0px;border-style:solid;border-spacing:0px;border-color:White\">" +
+                    //        "<input type=\"button\" style=\"border-radius:5px; font-family:Arial, Helvetica, sans-serif; font-size:10pt;\"  onclick=\"DoOCancelOrders('" + gWatchlists[idxWL].watchlistId + "','" + sLastWLAccountId  + "')\" value=\"Cancel\" ></th>";
+
+                    //    sThisDiv = sThisDiv + "<th style=\"width:" + lengthsWLO.WLCol2Width.toString() + "px; text-align:right; vertical-align:middle; border-top-width:1px; border-bottom-width:1px; border-left-width:0px; border-right-width:1px; border-style:solid; border-spacing:1px; border-color: White\" onclick=\"wlDoRemoveDiv('" + gWatchlists[idxWL].watchlistId + "','" + sLastWLAccountId + "')\">&nbsp;&nbsp;&nbsp;&nbsp;X&nbsp;&nbsp;</th>";
+
+                    //    sThisDiv = sThisDiv + "</tr>";
+
+                    //    sThisDiv = sThisDiv + "<tr>";
+                    //    sThisDiv = sThisDiv + "<td colspan=\"4\" style=\"vertical-align:top;border-width:1px; border-style:solid;border-spacing:1px;border-color:White\">";
+
+                    //}
+
+                    //mostly the same for cell and not cell
                     if (gbUsingCell) {
-                        sThisDiv = sThisDiv + "<div style=\"width:800px; font-family:Arial, Helvetica, sans-serif; font-size:10pt;\">";
-                        sThisDiv = sThisDiv + "<table style=\"width:800px; background-color:" + gsWLTableHeadingBackgroundColor + "; border-width:1px; border-style:solid; border-spacing:1px; border-color:White; font-family:Arial, Helvetica, sans-serif; font-size:10pt; \">";
-                        sThisDiv = sThisDiv + "<tr>";
-
-                        sThisDiv = sThisDiv + "<th style=\"height:30px; text-align:left; vertical-align:middle;border-top-width:1px;border-bottom-width:1px;border-left-width:1px;border-right-width:0px;border-style:solid;border-spacing:0px;border-color:White\">" +
-                            "&nbsp;From:&nbsp;<input id=\"txtOStart" + sThisId + "\" name=\"txtOStart" + sThisId + "\" type=\"text\" style=\"width:" + lengthsWLO.WLColAcquiredDateEntryWidth.toString() + "px;font-family:Arial,Helvetica, sans-serif; font-size:10pt; \" value=\"" + FormatCurrentDateForTD() + "\">" +
-                            "&nbsp;To:&nbsp;<input id=\"txtOEnd" + sThisId + "\" name=\"txtOEnd" + sThisId + "\" type=\"text\" style=\"width:" + lengthsWLO.WLColAcquiredDateEntryWidth.toString() + "px;font-family:Arial,Helvetica, sans-serif; font-size:10pt; \" value=\"" + FormatCurrentDateForTD() + "\">" +
-                            "&nbsp;<input id=\"chkUseDates" + sThisId + "\" name=\"chkUseDates" + sThisId + "\"  style=\"text-align:left;vertical-align:middle; \" type=\"checkbox\" value=\"\" ></th>";
-
-                        sThisDiv = sThisDiv + "<th style=\"height:30px; vertical-align:middle; border-top-width:1px; border-bottom-width:1px; border-left-width:0px; border-right-width:0px; border-style:solid;border-spacing:0px;border-color:White\">" +
-                            "<span style=\"vertical-align: middle;\" id=\"spanWLNumChecked" + sThisId + "\" name=\"spanWLNumChecked" + sThisId + "\">&nbsp;</span>" +
-                            "<span style=\"vertical-align: middle;\"><b>" + sLastWLAccountName + "--" + sLastWLName + "&nbsp;&nbsp;</b></span>" +
-                            "<img height=\"20\" width=\"20\" style=\"vertical-align:middle;\" src=\"xxximgMaxRestorexxx\" id=\"spanMaxRestore" + sThisId + "\" onclick=\"wlDoMaximizeRestore('" + sLastWLAccountId + "', '" + gWatchlists[idxWL].watchlistId + "')\">" +
-                            "&nbsp;&nbsp;&nbsp;&nbsp;<img height=\"20\" width=\"20\" style=\"vertical-align:middle;\" src=\"print-icon25px.png\" onclick=\"printdiv('xxxPrintDivNamexxx')\">" +
-                            "<span style=\"vertical-align: middle;\" id=\"spanODate" + sThisId + "\" name=\"spanODate" + sThisId + "\">&nbsp;&nbsp;&nbsp;&nbsp;" + sDate + "</span></th > ";
-
-                        sThisDiv = sThisDiv + "<th style=\"height:30px; text-align:right;vertical-align:middle;border-top-width:1px;border-bottom-width:1px;border-left-width:0px;border-right-width:0px;border-style:solid;border-spacing:0px;border-color:White\">" +
-                            "<input type=\"button\" style=\"border-radius:5px; font-family:Arial, Helvetica, sans-serif; font-size:10pt;\"  onclick=\"DoOCancelOrders('" + gWatchlists[idxWL].watchlistId + "','" +  sLastWLAccountId + "')\" value=\"Cancel\" ></th>";
-
-                        sThisDiv = sThisDiv + "<th style=\"height:30px;text-align:right; vertical-align:middle; border-top-width:1px; border-bottom-width:1px; border-left-width:0px; border-right-width:1px; border-style:solid; border-spacing:1px; border-color: White\" onclick=\"wlDoRemoveDiv('" + gWatchlists[idxWL].watchlistId + "','" + sLastWLAccountId + "')\">&nbsp;&nbsp;&nbsp;&nbsp;X&nbsp;&nbsp;</th>";
-
-                        sThisDiv = sThisDiv + "</tr>";
-
-                        sThisDiv = sThisDiv + "<tr>";
-                        sThisDiv = sThisDiv + "<td colspan=\"4\" style=\"vertical-align:top;border-width:1px; border-style:solid;border-spacing:1px;border-color:White\">";
-                    } else { //not using cell
-
+                        sThisDiv = sThisDiv + "<div style=\"width:" + lengthsWLO.WLWidthCell + "; font-family:Arial, Helvetica, sans-serif; font-size:10pt;\">";
+                        sThisDiv = sThisDiv + "<table style=\"width:" + lengthsWLO.WLWidthCell + "; background-color:" + gsWLTableHeadingBackgroundColor + "; border-width:1px; border-style:solid; border-spacing:1px; border-color:White; font-family:Arial, Helvetica, sans-serif; font-size:10pt; \">";
+                    } else {
                         sThisDiv = sThisDiv + "<div style=\"width:" + lengthsWLO.WLWidth + "; font-family:Arial, Helvetica, sans-serif; font-size:10pt;\">";
                         sThisDiv = sThisDiv + "<table style=\"width:" + lengthsWLO.WLWidth + "; background-color:" + gsWLTableHeadingBackgroundColor + "; border-width:1px; border-style:solid; border-spacing:1px; border-color:White; font-family:Arial, Helvetica, sans-serif; font-size:10pt; \">";
-                        sThisDiv = sThisDiv + "<tr>";
-
-                        sThisDiv = sThisDiv + "<th style=\"width:" + (lengthsWLO.WLColOpenLabelWidth + lengthsWLO.WLColOpenEntryWidth + lengthsWLO.WLColAcquiredDateEntryWidth).toString() + "px; text-align:left; vertical-align:middle;border-top-width:1px;border-bottom-width:1px;border-left-width:1px;border-right-width:0px;border-style:solid;border-spacing:0px;border-color:White\">" +
-                            "&nbsp;From:&nbsp;<input id=\"txtOStart" + sThisId + "\" name=\"txtOStart" + sThisId + "\" type=\"text\" style=\"width:" + lengthsWLO.WLColAcquiredDateEntryWidth.toString() + "px;font-family:Arial,Helvetica, sans-serif; font-size:10pt; \" value=\"" + FormatCurrentDateForTD() + "\">" +
-                            "&nbsp;To:&nbsp;<input id=\"txtOEnd" + sThisId + "\" name=\"txtOEnd" + sThisId + "\" type=\"text\" style=\"width:" + lengthsWLO.WLColAcquiredDateEntryWidth.toString() + "px;font-family:Arial,Helvetica, sans-serif; font-size:10pt; \" value=\"" + FormatCurrentDateForTD() + "\">" +
-                            "&nbsp;<input id=\"chkUseDates" + sThisId + "\" name=\"chkUseDates" + sThisId + "\"  style=\"text-align:left;vertical-align:middle; \" type=\"checkbox\" value=\"\" ></th>";
-
-
-                        sThisDiv = sThisDiv + "<th style=\"height:30px; width:" + lengthsWLO.WLColTitleWidth.toString() + "px; vertical-align:middle; border-top-width:1px; border-bottom-width:1px; border-left-width:0px; border-right-width:0px; border-style:solid;border-spacing:0px;border-color:White\">" +
-                            "<span style=\"vertical-align: middle;\" id=\"spanWLNumChecked" + sThisId + "\" name=\"spanWLNumChecked" + sThisId + "\">&nbsp;</span>" +
-                            "<span style=\"vertical-align: middle;\"><b>" + sLastWLAccountName + "--" + sLastWLName + "&nbsp;&nbsp;</b></span>" +
-                            "<img height=\"20\" width=\"20\" style=\"vertical-align:middle;\" src=\"xxximgMaxRestorexxx\" id=\"spanMaxRestore" + sThisId + "\" onclick=\"wlDoMaximizeRestore('" + sLastWLAccountId + "', '" + gWatchlists[idxWL].watchlistId + "')\">" +
-                            "<img height=\"20\" width=\"20\" style=\"vertical-align:middle;\" src=\"print-icon25px.png\" onclick=\"printdiv('xxxPrintDivNamexxx')\">" +
-                            "<span style=\"vertical-align: middle;\" id=\"spanODate" + sThisId + "\" name=\"spanODate" + sThisId + "\">&nbsp;&nbsp;&nbsp;&nbsp;" + sDate + "</span></th >";
-
-                        sThisDiv = sThisDiv + "<th style=\"width:" + (lengthsWLO.WLColCloseLabelWidth + lengthsWLO.WLColCloseEntryWidth).toString() + "px;text-align:right;vertical-align:middle;border-top-width:1px;border-bottom-width:1px;border-left-width:0px;border-right-width:0px;border-style:solid;border-spacing:0px;border-color:White\">" +
-                            "<input type=\"button\" style=\"border-radius:5px; font-family:Arial, Helvetica, sans-serif; font-size:10pt;\"  onclick=\"DoOCancelOrders('" + gWatchlists[idxWL].watchlistId + "','" + sLastWLAccountId  + "')\" value=\"Cancel\" ></th>";
-
-                        sThisDiv = sThisDiv + "<th style=\"width:" + lengthsWLO.WLCol2Width.toString() + "px; text-align:right; vertical-align:middle; border-top-width:1px; border-bottom-width:1px; border-left-width:0px; border-right-width:1px; border-style:solid; border-spacing:1px; border-color: White\" onclick=\"wlDoRemoveDiv('" + gWatchlists[idxWL].watchlistId + "','" + sLastWLAccountId + "')\">&nbsp;&nbsp;&nbsp;&nbsp;X&nbsp;&nbsp;</th>";
-
-                        sThisDiv = sThisDiv + "</tr>";
-
-                        sThisDiv = sThisDiv + "<tr>";
-                        sThisDiv = sThisDiv + "<td colspan=\"4\" style=\"vertical-align:top;border-width:1px; border-style:solid;border-spacing:1px;border-color:White\">";
-
                     }
+                    sThisDiv = sThisDiv + "<tr>";
+
+                    sThisDiv = sThisDiv + "<th style=\"width:" + (lengthsWLO.WLColOpenLabelWidth + lengthsWLO.WLColOpenEntryWidth + lengthsWLO.WLColAcquiredDateEntryWidth).toString() + "px; text-align:left; vertical-align:middle;border-top-width:1px;border-bottom-width:1px;border-left-width:1px;border-right-width:0px;border-style:solid;border-spacing:0px;border-color:White\">" +
+                        "&nbsp;From:&nbsp;<input id=\"txtOStart" + sThisId + "\" name=\"txtOStart" + sThisId + "\" type=\"text\" style=\"width:" + lengthsWLO.WLColAcquiredDateEntryWidth.toString() + "px;font-family:Arial,Helvetica, sans-serif; font-size:10pt; \" value=\"" + FormatCurrentDateForTD() + "\">" +
+                        "&nbsp;To:&nbsp;<input id=\"txtOEnd" + sThisId + "\" name=\"txtOEnd" + sThisId + "\" type=\"text\" style=\"width:" + lengthsWLO.WLColAcquiredDateEntryWidth.toString() + "px;font-family:Arial,Helvetica, sans-serif; font-size:10pt; \" value=\"" + FormatCurrentDateForTD() + "\">" +
+                        "&nbsp;<input id=\"chkUseDates" + sThisId + "\" name=\"chkUseDates" + sThisId + "\"  style=\"text-align:left;vertical-align:middle; \" type=\"checkbox\" value=\"\" ></th>";
+
+
+                    sThisDiv = sThisDiv + "<th style=\"height:30px; width:" + lengthsWLO.WLColTitleWidth.toString() + "px; vertical-align:middle; border-top-width:1px; border-bottom-width:1px; border-left-width:0px; border-right-width:0px; border-style:solid;border-spacing:0px;border-color:White\">" +
+                        "<span style=\"vertical-align: middle;\" id=\"spanWLNumChecked" + sThisId + "\" name=\"spanWLNumChecked" + sThisId + "\">&nbsp;</span>" +
+                        "<span style=\"vertical-align: middle;\"><b>" + sLastWLAccountName + "--" + sLastWLName + "&nbsp;&nbsp;</b></span>" +
+                        "<img height=\"20\" width=\"20\" style=\"vertical-align:middle;\" src=\"xxximgMaxRestorexxx\" id=\"spanMaxRestore" + sThisId + "\" onclick=\"wlDoMaximizeRestore('" + sLastWLAccountId + "', '" + gWatchlists[idxWL].watchlistId + "')\">" +
+                        "<img height=\"20\" width=\"20\" style=\"vertical-align:middle;\" src=\"print-icon25px.png\" onclick=\"printdiv('xxxPrintDivNamexxx')\">" +
+                        "<span style=\"vertical-align: middle;\" id=\"spanODate" + sThisId + "\" name=\"spanODate" + sThisId + "\">&nbsp;&nbsp;&nbsp;&nbsp;" + sDate + "</span></th >";
+
+                    sThisDiv = sThisDiv + "<th style=\"width:" + (lengthsWLO.WLColCloseLabelWidth + lengthsWLO.WLColCloseEntryWidth).toString() + "px;text-align:right;vertical-align:middle;border-top-width:1px;border-bottom-width:1px;border-left-width:0px;border-right-width:0px;border-style:solid;border-spacing:0px;border-color:White\">" +
+                        "<input type=\"button\" style=\"border-radius:5px; font-family:Arial, Helvetica, sans-serif; font-size:10pt;\"  onclick=\"DoOCancelOrders('" + gWatchlists[idxWL].watchlistId + "','" + sLastWLAccountId + "')\" value=\"Cancel\" ></th>";
+
+                    sThisDiv = sThisDiv + "<th style=\"width:" + lengthsWLO.WLCol2Width.toString() + "px; text-align:right; vertical-align:middle; border-top-width:1px; border-bottom-width:1px; border-left-width:0px; border-right-width:1px; border-style:solid; border-spacing:1px; border-color: White\" onclick=\"wlDoRemoveDiv('" + gWatchlists[idxWL].watchlistId + "','" + sLastWLAccountId + "')\">&nbsp;&nbsp;&nbsp;&nbsp;X&nbsp;&nbsp;</th>";
+
+                    sThisDiv = sThisDiv + "</tr>";
+
+                    sThisDiv = sThisDiv + "<tr>";
+                    sThisDiv = sThisDiv + "<td colspan=\"4\" style=\"vertical-align:top;border-width:1px; border-style:solid;border-spacing:1px;border-color:White\">";
+                    //-------------------------
+
                     sThisDiv = sThisDiv + "<div id=\"divtable" + sThisId + "\" style =\"border-spacing:0px; font-family:Arial, Helvetica, sans-serif; font-size:10pt;\">";
                     sThisTableTitle = "<div id=\"divtableTitle" + sThisId + "\" style =\"" + gsReplaceTableHeightOverflowTitle + " border-spacing:0px; font-family:Arial, Helvetica, sans-serif; font-size:10pt;\">";
                     sThisTableTitleInside = "<table style=\"border-collapse:collapse; border: 0px solid black;background-color:" + gsWLTableBackgroundColor + "; width:100%;border-width:0px;font-family:Arial, Helvetica, sans-serif; font-size:10pt;\">";
@@ -10655,11 +10693,19 @@ function GetWatchlistO() {
                         sonClickChangeOrder = sonClickChangeOrderBase.replace("xxx", gsSortOrderFieldsO.TimeInForce);
                         sThisTableTitleInside = sThisTableTitleInside + "<td " + sonClickChangeOrder + " style=\"" + gsFieldWidthsWLO["Time-in-Force"] + "text-align:left;vertical-align:" + sTableRowVerticalAlignment + ";border-width:0px;\">" + sTitle.TimeInForce + "</td>";
 
-                        sonClickChangeOrder = sonClickChangeOrderBase.replace("xxx", gsSortOrderFieldsO.TimeEntered);
-                        sThisTableTitleInside = sThisTableTitleInside + "<td " + sonClickChangeOrder + " style=\"" + gsFieldWidthsWLO.Opened + "text-align:left;vertical-align:" + sTableRowVerticalAlignment + ";border-width:0px;\">" + sTitle.TimeEntered + "</td>";
+                        if (gbUsingCell) {
+                            sonClickChangeOrder = sonClickChangeOrderBase.replace("xxx", gsSortOrderFieldsO.TimeEntered);
+                            sThisTableTitleInside = sThisTableTitleInside + "<td " + sonClickChangeOrder + " style=\"" + gsFieldWidthsWLO.OpenedCell + "text-align:left;vertical-align:" + sTableRowVerticalAlignment + ";border-width:0px;\">" + sTitle.TimeEntered + "</td>";
 
-                        sonClickChangeOrder = sonClickChangeOrderBase.replace("xxx", gsSortOrderFieldsO.Reported);
-                        sThisTableTitleInside = sThisTableTitleInside + "<td " + sonClickChangeOrder + " style=\"" + gsFieldWidthsWLO.Closed + "text-align:left;vertical-align:" + sTableRowVerticalAlignment + ";border-width:0px;\">" + sTitle.Reported + "</td>";
+                            sonClickChangeOrder = sonClickChangeOrderBase.replace("xxx", gsSortOrderFieldsO.Reported);
+                            sThisTableTitleInside = sThisTableTitleInside + "<td " + sonClickChangeOrder + " style=\"" + gsFieldWidthsWLO.ClosedCell + "text-align:left;vertical-align:" + sTableRowVerticalAlignment + ";border-width:0px;\">" + sTitle.Reported + "</td>";
+                        } else {
+                            sonClickChangeOrder = sonClickChangeOrderBase.replace("xxx", gsSortOrderFieldsO.TimeEntered);
+                            sThisTableTitleInside = sThisTableTitleInside + "<td " + sonClickChangeOrder + " style=\"" + gsFieldWidthsWLO.Opened + "text-align:left;vertical-align:" + sTableRowVerticalAlignment + ";border-width:0px;\">" + sTitle.TimeEntered + "</td>";
+
+                            sonClickChangeOrder = sonClickChangeOrderBase.replace("xxx", gsSortOrderFieldsO.Reported);
+                            sThisTableTitleInside = sThisTableTitleInside + "<td " + sonClickChangeOrder + " style=\"" + gsFieldWidthsWLO.Closed + "text-align:left;vertical-align:" + sTableRowVerticalAlignment + ";border-width:0px;\">" + sTitle.Reported + "</td>";
+                        }
 
                         sThisTableTitleInside = sThisTableTitleInside + "</tr></table>";
 
@@ -10771,7 +10817,11 @@ function GetWatchlistO() {
                                 let d2 = new Date(oWLOItem.enteredTime.split("+")[0] + "+00:00");
                                 sTmp = FormatTDTradeDate(d2);
                             }
-                            sThisTable = sThisTable + "<td style=\"" + gsFieldWidthsWLO.Opened + "text-align:left; vertical-align:" + sTableRowVerticalAlignment + "; border-width:0px; \">" + sTimeEnteredSpacesP + sTmp + sTimeEnteredSpacesT + "</td>";
+                            if (gbUsingCell) {
+                                sThisTable = sThisTable + "<td style=\"" + gsFieldWidthsWLO.OpenedCell + "text-align:left; vertical-align:" + sTableRowVerticalAlignment + "; border-width:0px; font-size:9pt;\">" + sTimeEnteredSpacesP + sTmp + sTimeEnteredSpacesT + "</td>";
+                            } else {
+                                sThisTable = sThisTable + "<td style=\"" + gsFieldWidthsWLO.Opened + "text-align:left; vertical-align:" + sTableRowVerticalAlignment + "; border-width:0px; \">" + sTimeEnteredSpacesP + sTmp + sTimeEnteredSpacesT + "</td>";
+                            }
 
                             //Closed - closeTime
                             if (oWLOItem.closeTime == "") {
@@ -10780,7 +10830,11 @@ function GetWatchlistO() {
                                 let d2 = new Date(oWLOItem.closeTime.split("+")[0] + "+00:00");
                                 sTmp = FormatTDTradeDate(d2);
                             }
-                            sThisTable = sThisTable + "<td style=\"" + gsFieldWidthsWLO.Closed + "text-align:left; vertical-align:" + sTableRowVerticalAlignment + "; border-width:0px; \">" + sReportedSpacesP + sTmp + sReportedSpacesT + "</td>";
+                            if (gbUsingCell) {
+                                sThisTable = sThisTable + "<td style=\"" + gsFieldWidthsWLO.ClosedCell + "text-align:left; vertical-align:" + sTableRowVerticalAlignment + "; border-width:0px; font-size:9pt; \">" + sReportedSpacesP + sTmp + sReportedSpacesT + "</td>";
+                            } else {
+                                sThisTable = sThisTable + "<td style=\"" + gsFieldWidthsWLO.Closed + "text-align:left; vertical-align:" + sTableRowVerticalAlignment + "; border-width:0px; \">" + sReportedSpacesP + sTmp + sReportedSpacesT + "</td>";
+                            }
 
                             sThisTable = sThisTable + "</tr>";
 
@@ -12766,7 +12820,7 @@ function GetWatchlists(bDoingReset) {
 
     let oCMLength = oCMWL.length;
     let oOldWL = new Array();
-    let dAccountValueLimit = 2000.0;
+
     if (oCMLength > 0) {
         if (bDoingReset) {
             for (let idxWLCur = 0; idxWLCur < gWatchlists.length; idxWLCur++) {
@@ -12825,6 +12879,7 @@ function GetWatchlists(bDoingReset) {
                                 oWL.WLItems.sort(sortBySymbol);
                             }
                         }
+                        let bSomethingSelected = false;
                         for (let idxWLCur = 0; idxWLCur < oOldWL.length; idxWLCur++) {
                             if ((oWL.accountId == oOldWL[idxWLCur].accountId) &&
                                 (oWL.name == oOldWL[idxWLCur].name)) {
@@ -12843,6 +12898,9 @@ function GetWatchlists(bDoingReset) {
                                                         (oOldWL[idxWLCur].WLItems[idxWLItemOld].accountId == oWL.WLItems[idxWLItem].accountId)) {
                                                         oWL.WLItems[idxWLItem].bSelectedForOrder = oOldWL[idxWLCur].WLItems[idxWLItemOld].bSelectedForOrder;
                                                         oWL.WLItems[idxWLItem].bCheckboxEnabled = oOldWL[idxWLCur].WLItems[idxWLItemOld].bCheckboxEnabled;
+                                                        if (oWL.WLItems[idxWLItem].bSelectedForOrder) {
+                                                            bSomethingSelected = true;
+                                                        }
                                                         break;
                                                     }
                                                 }
@@ -12851,6 +12909,16 @@ function GetWatchlists(bDoingReset) {
                                     }
                                 }
                                 break;
+                            }
+                        }
+                        if (!bSomethingSelected) {
+                            //remove the number selected indicator
+                            let sThisId = oWL.watchlistId + oWL.accountId;
+
+                            if (!isUndefined(document.getElementById("spanWLNumChecked" + sThisId))) {
+                                if (document.getElementById("spanWLNumChecked" + sThisId) != null) {
+                                    document.getElementById("spanWLNumChecked" + sThisId).innerHTML = "&nbsp;";
+                                }
                             }
                         }
                         gWatchlists[gWatchlists.length] = oWL;
@@ -12995,6 +13063,7 @@ function GetWatchlists(bDoingReset) {
                             oWL.WLItems.sort(sortBySymbol);
                             if (bDoingReset) {
                                 //check to see if the Account watchlist has been selected
+                                let bSomethingSelected = false;
                                 for (let idxWLCur = 0; idxWLCur < oOldWL.length; idxWLCur++) {
                                     if ((oWL.accountId == oOldWL[idxWLCur].accountId) &&
                                         (oWL.name == oOldWL[idxWLCur].name)) {
@@ -13012,6 +13081,9 @@ function GetWatchlists(bDoingReset) {
                                                                 (oOldWL[idxWLCur].WLItems[idxWLItemOld].accountId == oWL.WLItems[idxWLItem].accountId)) {
                                                                 oWL.WLItems[idxWLItem].bSelectedForOrder = oOldWL[idxWLCur].WLItems[idxWLItemOld].bSelectedForOrder;
                                                                 oWL.WLItems[idxWLItem].bCheckboxEnabled = oOldWL[idxWLCur].WLItems[idxWLItemOld].bCheckboxEnabled;
+                                                                if (oWL.WLItems[idxWLItem].bSelectedForOrder) {
+                                                                    bSomethingSelected = true;
+                                                                }
                                                                 break;
                                                             }
                                                         }
@@ -13020,6 +13092,16 @@ function GetWatchlists(bDoingReset) {
                                             }
                                         }
                                         break;
+                                    }
+                                }
+                                if (!bSomethingSelected) {
+                                    //remove the number selected indicator
+                                    let sThisId = oWL.watchlistId + oWL.accountId;
+
+                                    if (!isUndefined(document.getElementById("spanWLNumChecked" + sThisId))) {
+                                        if (document.getElementById("spanWLNumChecked" + sThisId) != null) {
+                                            document.getElementById("spanWLNumChecked" + sThisId).innerHTML = "&nbsp;";
+                                        }
                                     }
                                 }
                             }
@@ -13097,6 +13179,7 @@ function GetWatchlists(bDoingReset) {
                         oWL.WLItems.sort(sortBySymbol);
                     }
                     if (bDoingReset) {
+                        let bSomethingSelected = false;
                         //check to see if the OldGL watchlist has been selected
                         for (let idxWLCur = 0; idxWLCur < oOldWL.length; idxWLCur++) {
                             if ((oWL.accountId == oOldWL[idxWLCur].accountId) &&
@@ -13116,6 +13199,9 @@ function GetWatchlists(bDoingReset) {
                                                         (oOldWL[idxWLCur].WLItems[idxWLItemOld].accountId == oWL.WLItems[idxWLItem].accountId)) {
                                                         oWL.WLItems[idxWLItem].bSelectedForOrder = oOldWL[idxWLCur].WLItems[idxWLItemOld].bSelectedForOrder;
                                                         oWL.WLItems[idxWLItem].bCheckboxEnabled = oOldWL[idxWLCur].WLItems[idxWLItemOld].bCheckboxEnabled;
+                                                        if (oWL.WLItems[idxWLItem].bSelectedForOrder) {
+                                                            bSomethingSelected = true;
+                                                        }
                                                         break;
                                                     }
                                                 }
@@ -13124,6 +13210,16 @@ function GetWatchlists(bDoingReset) {
                                     }
                                 }
                                 break;
+                            }
+                        }
+                        if (!bSomethingSelected) {
+                            //remove the number selected indicator
+                            let sThisId = oWL.watchlistId + oWL.accountId;
+
+                            if (!isUndefined(document.getElementById("spanWLNumChecked" + sThisId))) {
+                                if (document.getElementById("spanWLNumChecked" + sThisId) != null) {
+                                    document.getElementById("spanWLNumChecked" + sThisId).innerHTML = "&nbsp;";
+                                }
                             }
                         }
                     }
@@ -15564,7 +15660,7 @@ function PageLoad() {
         gsRefreshToken = "";
         gsTDAPIKey = "";
     }
-//    gbUsingCell = true;
+    //gbUsingCell = true;
     let x = document.getElementById("TheBody");
     x.style.backgroundColor = gsBodyBackgroundColor;
     x.onmouseup = function () {
