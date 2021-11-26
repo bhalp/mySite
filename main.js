@@ -1,4 +1,4 @@
-var gsCurrentVersion = "8.98 2021-11-22 11:41"  // 1/5/21 - v5.6 - added the ability to show the current version by pressing shift F12
+var gsCurrentVersion = "8.98 2021-11-26 09:15"  // 1/5/21 - v5.6 - added the ability to show the current version by pressing shift F12
 var gsInitialStartDate = "2020-05-01";
 
 var gsRefreshToken = "";
@@ -16913,15 +16913,28 @@ function IsMarketOpenForTrading(bFirstTime) {
 
                                                             let dtOpenStart = new Date(oCM.equity.EQ.sessionHours.preMarket[0].start);
                                                             let dtPreEnd = new Date(oCM.equity.EQ.sessionHours.preMarket[0].end);
-                                                            let dtPostStart = new Date(oCM.equity.EQ.sessionHours.postMarket[0].start);
-                                                            let dtOpenEnd = new Date(oCM.equity.EQ.sessionHours.postMarket[0].end);
+                                                            let dtPostStart = new Date();
+                                                            let dtOpenEnd = new Date();
+                                                            if (isUndefined(oCM.equity.EQ.sessionHours.postMarket)) {
+                                                                dtOpenEnd = new Date(oCM.equity.EQ.sessionHours.regularMarket[0].end);
+                                                                dtPostStart = new Date(oCM.equity.EQ.sessionHours.regularMarket[0].end);
+                                                            } else {
+                                                                dtOpenEnd = new Date(oCM.equity.EQ.sessionHours.postMarket[0].end);
+                                                                dtPostStart = new Date(oCM.equity.EQ.sessionHours.postMarket[0].start);
+                                                            }
 
                                                             gMarketStatus.sMarketDate = FormatDateForTD(dtCurDate);
                                                             gMarketStatus.dtLastIndexCheck = dtCurDate;
                                                             gMarketStatus.dtLastMarketStatusCheck = dtCurDate;
                                                             gMarketStatus.dtLastWLPriceCheck = dtCurDate;
-                                                            gMarketStatus.dtPostEnd = new Date(oCM.equity.EQ.sessionHours.postMarket[0].end);
-                                                            gMarketStatus.dtPostStart = new Date(oCM.equity.EQ.sessionHours.postMarket[0].start);
+                                                            if (isUndefined(oCM.equity.EQ.sessionHours.postMarket)) {
+                                                                gMarketStatus.dtPostEnd = new Date(oCM.equity.EQ.sessionHours.regularMarket[0].end);
+                                                                gMarketStatus.dtPostStart = new Date(oCM.equity.EQ.sessionHours.regularMarket[0].end);
+                                                            } else {
+                                                                gMarketStatus.dtPostEnd = new Date(oCM.equity.EQ.sessionHours.postMarket[0].end);
+                                                                gMarketStatus.dtPostStart = new Date(oCM.equity.EQ.sessionHours.postMarket[0].start);
+                                                            }
+
                                                             gMarketStatus.dtPreEnd = new Date(oCM.equity.EQ.sessionHours.preMarket[0].end);
                                                             gMarketStatus.dtPreStart = new Date(oCM.equity.EQ.sessionHours.preMarket[0].start);
                                                             gMarketStatus.dtRegularEnd = new Date(oCM.equity.EQ.sessionHours.regularMarket[0].end);
